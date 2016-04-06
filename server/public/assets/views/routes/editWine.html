@@ -1,0 +1,41 @@
+
+<md-dialog aria-label="Edit Wine"  ng-cloak >
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Wine</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content" ng-controller="DeleteUpdateController">
+        <div class="wine-bottle">
+          <h1>TEST</h1>
+            <h3>Name: <input value="'{{ wine.name }}'" /></h3>
+            <p>Varietal: <input value="{{ wine.varietal }}" /></p>
+            <p>Appellation: "'{{ wine.appelation }}'"</p>
+            <p>Region: {{ wine.region }}</p>
+            <img ng-src="{{wine.imgurl}}"  />
+            <p>Cost: <input value="{{ wine.cost }}" /></p>
+            <p>Price: {{ wine.price }}</p>
+            <p>Inventory: {{ wine.inventory }}</p>
+            <p>Tasting Notes: {{ wine.tastingnotes }}</p>
+            <p>Winery Info: {{ wine.wineryinfo }}</p>
+
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+       Close Without Saving
+      </md-button>
+      <md-button ng-click="answer('useful')" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

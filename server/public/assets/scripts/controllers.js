@@ -37,7 +37,7 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
       $mdDialog.show(confirm).then(function() {
         $scope.status = 'Add Another Wine';
       }, function() {
-        $scope.status = $location.path("/index.html");
+        $scope.status = $location.path("/index.html#/home");
       });
     };
 
@@ -70,14 +70,14 @@ myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "W
     $scope.wineList = wineCellar.wineList;
 
 
-  $scope.status = '  ';
-  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+  // $scope.status = '  ';
+  // $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   $scope.showConfirm = function(ev, wine) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
           .title('Are you sure you want to delete this?')
           .textContent('This will remove the wine and all of its information from your cellar.')
-          .ariaLabel('Lucky day')
+          .ariaLabel('Delete Wine')
           .targetEvent(ev)
           .ok('Yes')
           .cancel('No');
@@ -85,7 +85,33 @@ myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "W
     $mdDialog.show(confirm).then(function() {
       $scope.status = wineCellar.deleteWine(wine);
     }, function() {
-      $scope.status = 'You decided to keep your debt.';
+      $scope.status = 'Deleted Nothing';
+    });
+  };
+
+
+//Edit
+$scope.edit = function(ev, wine) {
+    $scope.wine = wine;
+    console.log("$scope.wine is: ", $scope.wine.name);
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'routes/editWine.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
 

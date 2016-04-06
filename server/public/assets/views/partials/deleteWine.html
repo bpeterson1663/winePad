@@ -1,15 +1,20 @@
 <div class="container">
   <h2>List Page</h2>
-  <div ng-repeat="object in wineList.response" >
-    <h3>Name: {{ object.name }}</h3>
-    <p>Varietal: {{ object.varietal }}</p>
-    <p>Appellation: {{ object.appelation }}</p>
-    <p>Region: {{ object.region }}</p>
-    <p>Cost: {{ object.cost }}</p>
-    <p>Price: {{ object.price }}</p>
-    <p>Inventory: {{ object.inventory }}</p>
-    <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >
-     Delete Wine
-   </md-button>
+  <div class="wine-bottle">
+    <div ng-repeat="object in wineList.response" >
+      <h3>Name: {{ object.name }}</h3>
+      <p>Varietal: {{ object.varietal }}</p>
+      <p>Appellation: {{ object.appelation }}</p>
+      <p>Region: {{ object.region }}</p>
+      <p>Cost: {{ object.cost }}</p>
+      <p>Price: {{ object.price }}</p>
+      <p>Inventory: {{ object.inventory }}</p>
+      <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >
+       Delete Wine
+     </md-button>
+     <md-button class="md-primary md-raised" ng-click="edit($event, object)" >
+      Edit Wine
+    </md-button>
+    </div>
   </div>
 </div>
