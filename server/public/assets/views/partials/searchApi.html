@@ -1,0 +1,33 @@
+<div class="add-wine-container">
+  <h2>Search Wine</h2>
+  <form ng-submit="search(wineObject)">
+    <label for="wineryName">Lookup Wine: </label>
+    <input ng-model="wineObject.name" value="Search Wine" type="text" id="wineryName"/>
+
+    <input type="submit" value="Search Winery" />
+  </form>
+
+  <div class="container">
+    <h3>Search Results</h3>
+    <div ng-repeat="object in wineSelection.wine.data.Products.List">
+
+      <form ng-submit="addWine(object)">
+        <h3>Name: {{ object.Name }}</h3>
+        <img ng-src="{{object.Labels[0].Url}}" alt="Wine Label" class="img"/>
+        <p>Varietal: {{ object.Varietal.Name }}</p>
+        <p>Appellation: {{ object.Appellation.Name }}</p>
+        <p>Region: {{ object.Appellation.Region.Name }}</p>
+        <p>Info: {{object.Vineyard.Url}}</p>
+        <p>Tasting Notes: {{object.Community.Url}}</p>
+        <label for="cost">Cost: $</label>
+        <input ng-model="object.cost" type="text" id="cost" />
+        <label for="price">Price: $</label>
+        <input ng-model="object.price" type="text" id="price" />
+        <label for="Inventory">Inventory: </label>
+        <input ng-model="object.inventory" type="text" id="inventory" />
+
+        <input type="submit" value="Add Wine" / />
+      </form>
+    </div>
+  </div>
+</div>

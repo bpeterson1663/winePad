@@ -1,0 +1,36 @@
+<div class="add-wine-container">
+  <h2>Add Wine Manually</h2>
+  <form ng-submit="manuallyAdd(wineObject)">
+    <label for="name">Name: </label>
+    <input ng-model="wineObject.name" type="text" id="name"/>
+
+    <label for="varietal">Varietal: </label>
+    <input ng-model="wineObject.varietal" type="text" id="varietal"/>
+
+    <label for="appelation">Appelation: </label>
+    <input ng-model="wineObject.appelation" type="text" id="appelation"/>
+
+    <label for="region">Region: </label>
+    <input ng-model="wineObject.region" type="text" id="region"/>
+
+    <label for="imgurl">Image URL: </label>
+    <input ng-model="wineObject.imgurl" type="text" id="imgurl"/>
+
+    <label for="cost">Cost: </label>
+    <input ng-model="wineObject.cost" type="text" id="cost"/>
+
+    <label for="price">Price: </label>
+    <input ng-model="wineObject.price" type="text" id="price"/>
+
+    <label for="inventory">Inventory: </label>
+    <input ng-model="wineObject.inventory" type="text" id="inventory"/>
+
+    <label for="tastingnotes">Tasting Notes URL: </label>
+    <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes"/>
+
+    <label for="wineryinfo">Winery Info URL: </label>
+    <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo"/>
+
+    <input type="submit" value="Add Wine" />
+  </form>
+</div>

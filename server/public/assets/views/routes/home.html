@@ -1,2 +1,18 @@
 
 <h1>View Search Page</h1>
+
+<div class="container">
+  <h2>List Page</h2>
+  <div ng-repeat="object in wineList.response" >
+    <h3>Name: {{ object.name }}</h3>
+    <p>Varietal: {{ object.varietal }}</p>
+    <p>Appellation: {{ object.appelation }}</p>
+    <p>Region: {{ object.region }}</p>
+    <img ng-src="{{object.imgurl}}"  />
+    <p>Cost: {{ object.cost }}</p>
+    <p>Price: {{ object.price }}</p>
+    <p>Inventory: {{ object.inventory }}</p>
+    <p>Tasting Notes: {{ object.tastingnotes }}</p>
+    <p>Winery Info: {{ object.wineryinfo }}</p>
+  </div>
+</div>

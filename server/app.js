@@ -19,8 +19,6 @@ var register = require("./modules/register.js");
 var user = require("./modules/user.js");
 
 
-
-
 app.use(session({
     secret: "secret",
     key: "user",
@@ -36,6 +34,9 @@ app.use(flash({unsafe: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/", index);
+app.use("/register", register);
+app.use("/user", user);
 //PASSPORT SESSION
 passport.serializeUser(function(user, done){
   done(null, user.id);
@@ -72,9 +73,6 @@ passport.use("local", new localStrategy({
   }
 ));
 
-app.use("/", index);
-app.use("/register", register);
-app.use("/user", user);
 
 app.set("port", process.env.PORT || 3000);
 
