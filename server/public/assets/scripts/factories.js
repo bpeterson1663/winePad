@@ -40,6 +40,12 @@ myApp.factory("WineCellarService", ["$http", function($http){
       });
     };
 
+    var deleteWine = function(wine){
+      $http.delete("/wine/"+ wine._id).then(function(response){
+        getWineList();
+      });
+    };
+
     return {
         wine : wine,
         searchWine : searchWine,
@@ -47,6 +53,7 @@ myApp.factory("WineCellarService", ["$http", function($http){
         getWineList : getWineList,
         wineList : wineList,
         addWine : addWine,
-        manuallyAddWine : manuallyAddWine
+        manuallyAddWine : manuallyAddWine,
+        deleteWine : deleteWine
     }
 }]);

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 //PASPORT
 var passport = require("passport");
 var session = require("express-session");
-var localStrategy = require("passport-local");
+var localStrategy = require("passport-local").Strategy;
 var flash = require('connect-flash');
 //MODELS
 var User = require("./models/user.js");

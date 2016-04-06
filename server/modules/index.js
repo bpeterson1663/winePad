@@ -58,6 +58,15 @@ router.post("/addWineManually", function(req, res){
     });
 });
 
+router.delete("/wine/:id", function(req,res){
+  Wine.findByIdAndRemove(req.params.id, function(err,Wine){
+    if(err){
+      console.log(err);
+    }
+    res.send(Wine);
+  });
+});
+
 router.post("/", passport.authenticate("local", {
     successRedirect: "/assets/views/index.html#/home",
     failureRedirect: "/",

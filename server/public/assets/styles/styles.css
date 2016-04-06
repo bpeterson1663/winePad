@@ -1,3 +1,13 @@
 body{
 
 }
+.add-wine-container{
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  width: 400px;
+}
+.container{
+  
+  display:inline-block;
+}

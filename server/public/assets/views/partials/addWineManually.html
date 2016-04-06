@@ -2,35 +2,37 @@
   <h2>Add Wine Manually</h2>
   <form ng-submit="manuallyAdd(wineObject)">
     <label for="name">Name: </label>
-    <input ng-model="wineObject.name" type="text" id="name"/>
+    <input ng-model="wineObject.name" type="text" id="name"/><br />
 
     <label for="varietal">Varietal: </label>
-    <input ng-model="wineObject.varietal" type="text" id="varietal"/>
+    <input ng-model="wineObject.varietal" type="text" id="varietal"/><br />
 
     <label for="appelation">Appelation: </label>
-    <input ng-model="wineObject.appelation" type="text" id="appelation"/>
+    <input ng-model="wineObject.appelation" type="text" id="appelation"/><br />
 
     <label for="region">Region: </label>
-    <input ng-model="wineObject.region" type="text" id="region"/>
+    <input ng-model="wineObject.region" type="text" id="region"/><br />
 
     <label for="imgurl">Image URL: </label>
-    <input ng-model="wineObject.imgurl" type="text" id="imgurl"/>
+    <input ng-model="wineObject.imgurl" type="text" id="imgurl"/><br />
 
     <label for="cost">Cost: </label>
-    <input ng-model="wineObject.cost" type="text" id="cost"/>
+    <input ng-model="wineObject.cost" type="text" id="cost"/><br />
 
     <label for="price">Price: </label>
-    <input ng-model="wineObject.price" type="text" id="price"/>
+    <input ng-model="wineObject.price" type="text" id="price"/><br />
 
     <label for="inventory">Inventory: </label>
-    <input ng-model="wineObject.inventory" type="text" id="inventory"/>
+    <input ng-model="wineObject.inventory" type="text" id="inventory"/><br />
 
     <label for="tastingnotes">Tasting Notes URL: </label>
-    <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes"/>
+    <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes"/><br />
 
     <label for="wineryinfo">Winery Info URL: </label>
-    <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo"/>
+    <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo"/><br />
 
-    <input type="submit" value="Add Wine" />
+    <md-button type="submit" class="md-primary md-raised" ng-click="showAddConfirm($event)" >
+     Add Wine
+   </md-button>
   </form>
 </div>

@@ -1,4 +1,4 @@
-var myApp = angular.module("myApp", ["ngRoute"]);
+var myApp = angular.module("myApp", ["ngRoute", "ngMaterial", "ngAnimate"]);
 
 myApp.config(["$routeProvider", function($routeProvider){
   $routeProvider.
@@ -11,7 +11,8 @@ myApp.config(["$routeProvider", function($routeProvider){
       controller: "AddWineController"
     }).
     when('/deleteUpdate', {
-      templateUrl: "/assets/views/routes/deleteUpdate.html"
+      templateUrl: "/assets/views/routes/deleteUpdate.html",
+      controller: "DeleteUpdateController"
     }).
     when('/reports', {
       templateUrl: "/assets/views/routes/reports.html"
