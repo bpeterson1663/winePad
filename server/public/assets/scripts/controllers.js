@@ -4,14 +4,30 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
     var wineCellar = WineCellarService;
     wineCellar.getWineList();
     //information collected from the dom and then passed into the searchWine function
-    $scope.search = function(winery){
+    $scope.search = function(ev, winery){
         wineCellar.searchWine(winery);
         wineCellar.getWine();
-    };
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+          controller: DialogControllerSearch,
+          templateUrl: 'routes/searchResults.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: useFullScreen,
+          scope: $scope,
+          preserveScope: true
+        })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
     //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom
     $scope.wineSelection = wineCellar;
     wineList = wineCellar;
     console.log("Wine Cellar.data is : ", $scope.wineSelection);
+  };
     //when addWine button is clicked on client side
     $scope.addWine = function(addWine){
       wineCellar.addWine(addWine);
@@ -25,23 +41,51 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
 
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    $scope.showAddConfirm = function(ev) {
+    $scope.showAddConfirm = function(ev, addWine) {
+      wineCellar.addWine(addWine);
+      wineCellar.getWineList();
       // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
             .title('Would you like to add another wine?')
-            .ariaLabel('Lucky day')
+            .ariaLabel('Add Wine')
             .targetEvent(ev)
             .ok('Yes')
             .cancel('No');
-
       $mdDialog.show(confirm).then(function() {
         $scope.status = 'Add Another Wine';
       }, function() {
         $scope.status = $location.path("/index.html#/home");
       });
-    };
+  };
+  function DialogControllerSearch($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+  }
 
 }]);
+
+myApp.controller('ProgressWheel', ['$interval',
+    function($interval) {
+      var self = this;
+      self.activated = false;
+      self.determinateValue = 30;
+      // Iterate every 100ms, non-stop and increment
+      // the Determinate loader.
+      $interval(function() {
+        self.determinateValue += 1;
+        if (self.determinateValue > 100) {
+          self.determinateValue = 30;
+        }
+      }, 100);
+    }
+  ]);
 
 myApp.controller("ShowWineController", ["$scope", '$http', "WineCellarService", function($scope, $http, WineCellarService){
   //store the factory object in wineCellar

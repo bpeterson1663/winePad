@@ -1,0 +1,47 @@
+<md-dialog aria-label="Search Results"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Search Results</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()"></md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="container">
+        <h3>Search Results</h3>
+        <div ng-controller="ProgressWheel as vm" ng-cloak layout="row" layout-sm="column" layout-align="space-around">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <div ng-repeat="object in wineSelection.wine.data.Products.List">
+          <form>
+            <h3>Name: {{ object.Name }}</h3>
+            <img ng-src="{{object.Labels[0].Url}}" alt="Wine Label" class="img"/>
+            <p>Varietal: {{ object.Varietal.Name }}</p>
+            <p>Vintage: {{ object.Vintage}}</p>
+            <p>Appellation: {{ object.Appellation.Name }}</p>
+            <p>Region: {{ object.Appellation.Region.Name }}</p>
+            <p>Info: {{object.Vineyard.Url}}</p>
+            <p>Tasting Notes: {{object.Community.Url}}</p>
+            <label for="cost">Cost: $</label>
+            <input ng-model="object.cost" type="text" id="cost" />
+            <label for="price">Price: $</label>
+            <input ng-model="object.price" type="text" id="price" />
+            <label for="Inventory">Inventory: </label>
+            <input ng-model="object.inventory" type="text" id="inventory" />
+
+            <md-button class="md-primary md-raised" ng-click="showAddConfirm($event, object)" >
+             Add Wine
+           </md-button>
+          </form>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('close')">
+       Close
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

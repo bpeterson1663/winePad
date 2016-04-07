@@ -1,5 +1,4 @@
 <div class="container">
-  <h2>List Page</h2>
   <div class="wine-bottle">
     <div ng-repeat="object in wineList.response" >
       <h3>Name: {{ object.name }}</h3>
@@ -7,9 +6,9 @@
       <p>Vintage: {{ object.vintage }}</p>
       <p>Appellation: {{ object.appelation }}</p>
       <p>Region: {{ object.region }}</p>
-      <p>Cost: {{ object.cost }}</p>
-      <p>Price: {{ object.price }}</p>
-      <p>Inventory: {{ object.inventory }}</p>
+      <p>Cost: ${{ object.cost }}</p>
+      <p>Price: ${{ object.price }}</p>
+      <p>Inventory: {{ object.inventory }} bottle(s)</p>
       <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >
        Delete Wine
      </md-button>

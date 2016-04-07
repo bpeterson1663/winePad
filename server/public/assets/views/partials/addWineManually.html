@@ -1,39 +1,52 @@
-<div class="add-wine-container">
+<div class="md-padding" ng-cloak>
   <h2>Add Wine Manually</h2>
   <form ng-submit="manuallyAdd(wineObject)">
-    <label for="name">Name: </label>
-    <input ng-model="wineObject.name" type="text" id="name"/><br />
-
-    <label for="varietal">Varietal: </label>
-    <input ng-model="wineObject.varietal" type="text" id="varietal"/><br />
-
-    <label for="vintage">Vintage: </label>
-    <input ng-model="wineObject.vintage" type="text" id="vintage"/><br />
-
-    <label for="appelation">Appelation: </label>
-    <input ng-model="wineObject.appelation" type="text" id="appelation"/><br />
-
-    <label for="region">Region: </label>
-    <input ng-model="wineObject.region" type="text" id="region"/><br />
-
-    <label for="imgurl">Image URL: </label>
-    <input ng-model="wineObject.imgurl" type="text" id="imgurl"/><br />
-
-    <label for="cost">Cost: </label>
-    <input ng-model="wineObject.cost" type="text" id="cost"/><br />
-
-    <label for="price">Price: </label>
-    <input ng-model="wineObject.price" type="text" id="price"/><br />
-
-    <label for="inventory">Inventory: </label>
-    <input ng-model="wineObject.inventory" type="text" id="inventory"/><br />
-
-    <label for="tastingnotes">Tasting Notes URL: </label>
-    <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes"/><br />
-
-    <label for="wineryinfo">Winery Info URL: </label>
-    <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo"/><br />
-
+    <div layout="row">
+    <md-input-container>
+      <label>Name: </label>
+      <input ng-model="wineObject.name" type="text" id="name"/>
+    </md-input-container>
+    <md-input-container>
+      <label>Varietal: </label>
+      <input ng-model="wineObject.varietal" type="text" id="varietal"/>
+    </md-input-container><br />
+    <md-input-container>
+      <label>Vintage: </label>
+      <input ng-model="WineObject.vintage" type="text" id="vintage" />
+    </md-input-container>
+    <md-input-container>
+      <label>Appelation: </label>
+        <input ng-model="wineObject.appelation" type="text" id="appelation"/>
+    </md-input-container><br />
+    <md-input-container>
+      <label>Region: </label>
+      <input ng-model="WineObject.region" type="text" id="region" />
+    </md-input-container>
+    <md-input-container>
+      <label>Image URL: </label>
+      <input ng-model="WineObject.imgurl" type="text" id="imgurl" />
+    </md-input-container><br />
+    <md-input-container>
+      <label>Cost: $</label>
+      <input ng-model="WineObject.cost" type="text" id="cost" />
+    </md-input-container>
+    <md-input-container>
+      <label>Price: $</label>
+      <input ng-model="WineObject.price" type="text" id="price" />
+    </md-input-container>
+    <md-input-container>
+      <label>Inventory: </label>
+      <input ng-model="WineObject.inventory" type="text" id="inventory" />
+    </md-input-container><br />
+    <md-input-container>
+      <label>Tasting Notes URL: </label>
+      <input ng-model="WineObject.tastingnotes" type="text" id="tastingnotes" />
+    </md-input-container><br />
+    <md-input-container>
+      <label>Winery Information URL: </label>
+      <input ng-model="WineObject.wineryinfo" type="text" id="wineryinfo" />
+    </md-input-container>
+  </div>
     <md-button type="submit" class="md-primary md-raised" ng-click="showAddConfirm($event)" >
      Add Wine
    </md-button>

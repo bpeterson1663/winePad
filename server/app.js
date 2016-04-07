@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 //PASPORT
 var passport = require("passport");
 var session = require("express-session");
-var localStrategy = require("passport-local").Strategy;
+var localStrategy = require("passport-local");
 var flash = require('connect-flash');
 //MODELS
 var User = require("./models/user.js");
@@ -30,13 +30,15 @@ app.use(session({
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(flash({unsafe: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash());
 
 app.use("/", index);
 app.use("/register", register);
 app.use("/user", user);
+
 //PASSPORT SESSION
 passport.serializeUser(function(user, done){
   done(null, user.id);
@@ -56,7 +58,7 @@ passport.use("local", new localStrategy({
     User.findOne({username: username}, function(err,user){
       if(err) throw err;
       if(!user){
-        return done(null, false, {message: "Incorrect username or password"});
+        return done(null, false, {messages: req.flash("Incorrect username or password")});
         console.log("Incorrect");
       }
 
@@ -65,14 +67,13 @@ passport.use("local", new localStrategy({
           if(isMatch){
             return done(null, user);
           } else {
-            done(null, false, {message: "Incorrect username or password"});
+            done(null, false, {messages: req.flash("Incorrect username or password")});
             console.log("Incorrect");
           }
       });
     });
   }
 ));
-
 
 app.set("port", process.env.PORT || 3000);
 
