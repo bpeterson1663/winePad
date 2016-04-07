@@ -15,6 +15,7 @@
         <h3>Name: {{ object.Name }}</h3>
         <img ng-src="{{object.Labels[0].Url}}" alt="Wine Label" class="img"/>
         <p>Varietal: {{ object.Varietal.Name }}</p>
+        <p>Vintage: {{ object.Vintage}}</p>
         <p>Appellation: {{ object.Appellation.Name }}</p>
         <p>Region: {{ object.Appellation.Region.Name }}</p>
         <p>Info: {{object.Vineyard.Url}}</p>

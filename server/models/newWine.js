@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var newWine = new Schema({
     name: { type: String},
     varietal: { type: String},
+    vintage: {type: String},
     appelation: { type: String},
     region: { type: String},
     imgurl: {type: String},

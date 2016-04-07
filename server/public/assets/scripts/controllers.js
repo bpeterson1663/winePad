@@ -41,18 +41,6 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
       });
     };
 
-    function DialogController($scope, $mdDialog) {
-    $scope.hide = function() {
-      $mdDialog.hide();
-    };
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-    $scope.answer = function(answer) {
-      $mdDialog.hide(answer);
-    };
-  }
-
 }]);
 
 myApp.controller("ShowWineController", ["$scope", '$http', "WineCellarService", function($scope, $http, WineCellarService){
@@ -68,10 +56,6 @@ myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "W
     var wineCellar = WineCellarService;
     wineCellar.getWineList();
     $scope.wineList = wineCellar.wineList;
-
-
-  // $scope.status = '  ';
-  // $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   $scope.showConfirm = function(ev, wine) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
@@ -93,7 +77,6 @@ myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "W
 //Edit
 $scope.edit = function(ev, wine) {
     $scope.wine = wine;
-    console.log("$scope.wine is: ", $scope.wine.name);
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: DialogController,
@@ -101,10 +84,12 @@ $scope.edit = function(ev, wine) {
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
-      fullscreen: useFullScreen
+      fullscreen: useFullScreen,
+      scope: $scope,
+      preserveScope: true
     })
     .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
+      $scope.status = wineCellar.getWineList();;
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -114,16 +99,16 @@ $scope.edit = function(ev, wine) {
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-
-  function DialogController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
+  function DialogController($scope, $http, $mdDialog, WineCellarService) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.answer = function(response, wine) {
+      $mdDialog.hide(response);
+      $http.put("/updateWine"+ wine._id, wine).then(WineCellarService.getWineList());
+    };
+  }
 }]);
