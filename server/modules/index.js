@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require('path');
 var passport = require('passport');
 var Wine = require('../models/newWine.js');
+var User = require("../models/user");
 
 router.get("/getWineDatabase", function(req, res){
   Wine.find({}, function(err, data){
@@ -11,6 +12,42 @@ router.get("/getWineDatabase", function(req, res){
       }
       res.send(data);
   });
+});
+
+router.put("/addWineToCellar:id", function(req, res){
+  console.log("Req.body is: ",req.body);
+  var id = req.body._id;
+  console.log("ID: ", ID);
+  if(!req.body) {
+      return res.send(400);
+  }
+  User.findById(id, function(e,data){
+      if(e) {
+          return res.send(500, e);
+      }
+      if(!data) {
+          return res.send(404);
+      }
+      var update = {
+        name: req.body.winelist.name,
+        varietal: req.body.winelist.varietal,
+        vintage: req.body.winelist.vintage,
+        appelation: req.body.winelist.appelation,
+        region: req.body.winelist.region,
+        imgurl: req.body.winelist.imgurl,
+        wineryinfo: req.body.winelist.wineryinfo,
+        cost: req.body.winelist.cost,
+        price: req.body.winelist.price,
+        inventory: req.body.winelist.inventory,
+        tastingnotes: req.body.winelist.tastingnotes
+      };
+      User.findByIdAndUpdate(id, update, function(err){
+          if(err) {
+              return res.send(500, err);
+          }
+      });
+  });
+  console.log("Made it to here");
 });
 
 router.post("/addWineToCellar", function(req, res){
@@ -69,6 +106,7 @@ router.delete("/wine/:id", function(req,res){
 });
 
 router.put('/updateWine:id', function(req, res) {
+
     var id = req.body._id;
 
     if(!req.body) {
@@ -108,6 +146,15 @@ router.post("/", passport.authenticate("local", {
     failureRedirect: "/",
     failureFlash: true
 }));
+router.get("/users", function(req,res,next){
+    res.sendFile(path.resolve(__dirname, "../public/assets/views/users.html"));
+});
+
+router.get('/logout', function(req, res){
+  console.log('logging out');
+  req.logout();
+
+});
 
 router.get("/*", function(req, res){
   var file = (req.params[0] || "/assets/views/login.html");

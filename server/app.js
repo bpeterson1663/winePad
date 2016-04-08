@@ -35,10 +35,6 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use("/", index);
-app.use("/register", register);
-app.use("/user", user);
-
 //PASSPORT SESSION
 passport.serializeUser(function(user, done){
   done(null, user.id);
@@ -74,6 +70,10 @@ passport.use("local", new localStrategy({
     });
   }
 ));
+
+app.use("/register", register);
+app.use("/user", user);
+app.use("/", index);
 
 app.set("port", process.env.PORT || 3000);
 

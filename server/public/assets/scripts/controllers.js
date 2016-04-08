@@ -1,7 +1,8 @@
 //controller with the name WineController with paramaters of $scope $http and a factory of WineCellar
-myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdMedia", "WineCellarService", function($scope, $location, $mdDialog, $mdMedia, WineCellarService){
+myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDialog","$http", "$mdMedia", "WineCellarService", function($scope, $window, $location, $mdDialog, $http, $mdMedia, WineCellarService){
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
+    wineCellar.checkUserLoggedIn();
     wineCellar.getWineList();
     //information collected from the dom and then passed into the searchWine function
     $scope.search = function(ev, winery){
@@ -38,8 +39,6 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
       wineCellar.manuallyAddWine(addWine);
       wineCellar.getWineList();
     };
-
-
 
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -126,15 +125,38 @@ myApp.controller('ProgressWheel', ['$interval',
     }
   ]);
 
-myApp.controller("ShowWineController", ["$scope", '$http', "WineCellarService", function($scope, $http, WineCellarService){
+myApp.controller("ShowWineController", ["$scope", '$http', "$window", "WineCellarService", function($scope, $http, $window, WineCellarService){
   //store the factory object in wineCellar
+  $http.get("/user").then(function(response){
+        if(response.data !== true){
+          console.log("NOT LOGGED IN!");
+          $window.location.href = '/assets/views/login.html';
+        } else {
+          console.log("LOGGED IN! ", response.data);
+          $http.get("/user/name").then(function(response){
+              console.log(response.data);
+          });
+        }
+    });
     var wineCellar = WineCellarService;
     wineCellar.getWineList();
 
     $scope.wineList = wineCellar.wineList;
 }]);
 
-myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "WineCellarService", function($scope, $mdDialog, $mdMedia, WineCellarService){
+myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDialog","$mdMedia", "WineCellarService", function($scope, $http, $window, $mdDialog, $mdMedia, WineCellarService){
+
+  $http.get("/user").then(function(response){
+        if(response.data !== true){
+          console.log("NOT LOGGED IN!");
+        $window.location.href = '/assets/views/login.html';
+        } else {
+          console.log("LOGGED IN! ", response.data);
+          $http.get("/user/name").then(function(response){
+              console.log(response.data);
+          });
+        }
+    });
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
     wineCellar.getWineList();
@@ -195,7 +217,14 @@ $scope.edit = function(ev, wine) {
 }]);
 
 
-myApp.controller('NavigationController', function ($scope, $timeout, $mdSidenav, $log) {
+myApp.controller('NavigationController', function ($scope, $http, $timeout, $mdSidenav, $log) {
+    $scope.logOutUser = function(){
+        $http.get('/logout').then(function(response){
+              console.log("LOGGED OUT");
+              res.redirect('/assets/views/login.html');
+          });
+    };
+
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
