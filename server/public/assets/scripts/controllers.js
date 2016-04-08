@@ -56,7 +56,7 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
       $mdDialog.show(confirm).then(function() {
         $scope.status = 'Add Another Wine';
       }, function() {
-        $scope.status = $location.path("/index.html#/home");
+        $scope.status = $location.url("home");
       });
   };
   function DialogControllerSearch($scope, $mdDialog) {

@@ -1,9 +1,9 @@
-<div class="add-wine-container">
+<div>
   <h2>Search Wine</h2>
   <form>
     <md-input-container>
       <label for="wineryName">Lookup Winery: </label>
-      <input ng-model="wineObject.name" value="Search Wine" type="text" id="wineryName"/>
+      <input ng-model="wineObject.name" value="Search Wine" type="text" id="wineryName" required/>
       <md-button ng-click="search($event, wineObject)" class="md-primary md-raised" >Search Winery</md-button>
     </md-input-container>
   </form>

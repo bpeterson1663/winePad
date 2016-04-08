@@ -33,21 +33,26 @@
           <h1 class="md-toolbar-tools">Main Menu</h1>
         </md-toolbar>
         <md-content layout-padding ng-controller="LeftCtrl">
-          <md-button ng-click="close()" class="md-primary md-theme-indigo" hide-gt-md>
-            Close
-          </md-button><br />
-          <md-button ng-click="close()" herf="#home" class="md-primary md-theme-indigo" hide-gt-md>
-            View / Search
-          </md-button><br />
-          <md-button ng-click="close()" herf="#add" class="md-primary md-theme-indigo" hide-gt-md>
-            Add
-          </md-button><br />
-          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-theme-indigo" hide-gt-md>
-            Delete / Update
-          </md-button><br />
-          <md-button ng-click="close()" href="#reports" class="md-primary md-theme-indigo" hide-gt-md>
-            Reports
-          </md-button><br />
+          <md-list-item>
+            <md-button ng-click="close()" href="#home" class="md-primary md-raised" hide-gt-md flex>
+              Home
+            </md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button ng-click="close()" href="#add" class="md-primary md-raised" hide-gt-md flex>
+              Add
+            </md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised" hide-gt-md flex>
+              Delete / Update
+            </md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button ng-click="close()" href="#reports" class="md-primary md-raised" hide-gt-md flex>
+              Reports
+            </md-button>
+          </md-list-item>
         </md-content>
       </md-sidenav>
       <md-content flex layout-padding>
