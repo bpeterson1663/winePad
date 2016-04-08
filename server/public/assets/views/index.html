@@ -13,20 +13,49 @@
     <script src="/assets/vendors/angular-messages.min.js" type="text/javascript"></script>
     <script src="/assets/vendors/angular-aria.min.js" type="text/javascript"></script>
     <script src="/assets/vendors/angular-material.min.js" type="text/javascript" ></script>
+    <script src="/assets/vendors/angular-sanitize.min.js" type="text/javascript" ></script>
     <script src="/assets/scripts/app.js" type="text/javascript"></script>
     <script src="/assets/scripts/controllers.js" type="text/javascript"></script>
     <script src="/assets/scripts/factories.js" type="text/javascript"></script>
   </head>
   <body>
-    <h1>winePad</h1>
-    <ul>
-      <li><a href="#home">VIEW/SEARCH</a></li>
-      <li><a href="#add">ADD</a></li>
-      <li><a href="#deleteUpdate">DELETE/UPDATE</a></li>
-      <li><a href="#reports">REPORTS</a></li>
-    </ul>
-    <main ng-view>
+  <div ng-controller="NavigationController" ng-cloak>
+    <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+          <span>winePad</span>
+        </div>
+      </md-toolbar>
 
-    </main>
+    <section class="md-theme-indigo" layout="row" flex>
+      <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>Main Menu</md-button>
+      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Main Menu</h1>
+        </md-toolbar>
+        <md-content layout-padding ng-controller="LeftCtrl">
+          <md-button ng-click="close()" class="md-primary md-theme-indigo" hide-gt-md>
+            Close
+          </md-button><br />
+          <md-button ng-click="close()" herf="#home" class="md-primary md-theme-indigo" hide-gt-md>
+            View / Search
+          </md-button><br />
+          <md-button ng-click="close()" herf="#add" class="md-primary md-theme-indigo" hide-gt-md>
+            Add
+          </md-button><br />
+          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-theme-indigo" hide-gt-md>
+            Delete / Update
+          </md-button><br />
+          <md-button ng-click="close()" href="#reports" class="md-primary md-theme-indigo" hide-gt-md>
+            Reports
+          </md-button><br />
+        </md-content>
+      </md-sidenav>
+      <md-content flex layout-padding>
+        <main ng-view>
+        </main>
+      <div flex></div>
+      </md-content>
+    </section>
+  </div>
   </body>
 </html>

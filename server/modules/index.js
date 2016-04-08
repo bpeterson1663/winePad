@@ -100,6 +100,7 @@ router.put('/updateWine:id', function(req, res) {
             }
         });
     });
+    console.log("Made it to here");
 });
 
 router.post("/", passport.authenticate("local", {

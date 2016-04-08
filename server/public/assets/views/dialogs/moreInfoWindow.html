@@ -1,0 +1,48 @@
+<md-dialog aria-label="{{wine.name}}">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <img ng-src="{{wine.imgurl}}" class="md-avatar" alt="{{wine.name}}" />
+        <h2>{{wine.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">X
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Cellar Information">
+          <md-content class="md-padding more-info-content">
+            <h1 class="md-display-2">Cellar Information</h1>
+            <p>Name: {{wine.name}}</p>
+            <p>Vareital: {{wine.varietal}}</p>
+            <p>Vintage: {{wine.vintage}}</p>
+            <p>Appelation: {{wine.appelation}}</p>
+            <p>Region: {{wine.region}}</p>
+            </md-content>
+        </md-tab>
+        <md-tab label="Winery Information">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Winery Information</h1>
+          </md-content>
+        </md-tab>
+        <md-tab label="Tasting Notes">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tasting Notes</h1>
+
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <!--
+      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on
+      </md-button>-->
+      <span flex></span>
+      <md-button ng-click="answer('close')" style="margin-right:20px;" >
+        Close
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

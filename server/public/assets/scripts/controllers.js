@@ -10,7 +10,7 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
         $mdDialog.show({
           controller: DialogControllerSearch,
-          templateUrl: 'routes/searchResults.html',
+          templateUrl: 'dialogs/searchResults.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:true,
@@ -24,10 +24,10 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
           $scope.status = 'You cancelled the dialog.';
         });
     //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom
-    $scope.wineSelection = wineCellar;
-    wineList = wineCellar;
-    console.log("Wine Cellar.data is : ", $scope.wineSelection);
-  };
+      $scope.wineSelection = wineCellar;
+      wineList = wineCellar;
+      console.log("Wine Cellar.data is : ", $scope.wineSelection);
+    };
     //when addWine button is clicked on client side
     $scope.addWine = function(addWine){
       wineCellar.addWine(addWine);
@@ -38,6 +38,8 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
       wineCellar.manuallyAddWine(addWine);
       wineCellar.getWineList();
     };
+
+
 
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -70,6 +72,43 @@ myApp.controller("AddWineController", ["$scope", "$location", "$mdDialog", "$mdM
   }
 
 }]);
+
+myApp.controller('MoreInfoController', function($scope, $sce, $mdDialog) {
+  $scope.showMore = function(ev, wine) {
+   $scope.wine = wine;
+
+   $scope.trustSrc = function(src){
+     console.log(src);
+     return $sce.trustAsResourceUrl(src);
+   };
+
+   $mdDialog.show({
+     controller: ShowMoreDialogController,
+     templateUrl: 'dialogs/moreInfoWindow.html',
+     parent: angular.element(document.body),
+     targetEvent: ev,
+     clickOutsideToClose:true,
+     scope: $scope,
+     preserveScope: true
+   }).then(function(answer) {
+         $scope.status = 'You said the information was "' + answer + '".';
+       }, function() {
+         $scope.status = 'You cancelled the dialog.';
+       });
+     };
+
+  function ShowMoreDialogController($scope, $mdDialog) {
+       $scope.hide = function() {
+         $mdDialog.hide();
+       };
+       $scope.cancel = function() {
+         $mdDialog.cancel();
+       };
+       $scope.answer = function(answer) {
+         $mdDialog.hide(answer);
+       };
+  }
+});
 
 myApp.controller('ProgressWheel', ['$interval',
     function($interval) {
@@ -116,15 +155,13 @@ myApp.controller("DeleteUpdateController", ["$scope", "$mdDialog","$mdMedia", "W
       $scope.status = 'Deleted Nothing';
     });
   };
-
-
 //Edit
 $scope.edit = function(ev, wine) {
     $scope.wine = wine;
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: DialogController,
-      templateUrl: 'routes/editWine.html',
+      templateUrl: 'dialogs/editWine.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
@@ -156,3 +193,66 @@ $scope.edit = function(ev, wine) {
     };
   }
 }]);
+
+
+myApp.controller('NavigationController', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.toggleLeft = buildDelayedToggler('left');
+    $scope.toggleRight = buildToggler('right');
+    $scope.isOpenRight = function(){
+      return $mdSidenav('right').isOpen();
+    };
+    /**
+     * Supplies a function that will continue to operate until the
+     * time is up.
+     */
+    function debounce(func, wait, context) {
+      var timer;
+      return function debounced() {
+        var context = $scope,
+            args = Array.prototype.slice.call(arguments);
+        $timeout.cancel(timer);
+        timer = $timeout(function() {
+          timer = undefined;
+          func.apply(context, args);
+        }, wait || 10);
+      };
+    }
+    /**
+     * Build handler to open/close a SideNav; when animation finishes
+     * report completion in console
+     */
+    function buildDelayedToggler(navID) {
+      return debounce(function() {
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      }, 200);
+    }
+    function buildToggler(navID) {
+      return function() {
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      }
+    }
+  })
+  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close LEFT is done");
+        });
+    };
+  })
+  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('right').close()
+        .then(function () {
+          $log.debug("close RIGHT is done");
+        });
+    };
+  });
