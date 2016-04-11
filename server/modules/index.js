@@ -77,15 +77,30 @@ router.put("/addWineToCellar/:id", function(req, res){
 //     });
 // });
 
-router.delete("/wine/:id", function(req,res){
-  Wine.findByIdAndRemove(req.params.id, function(err,Wine){
-    if(err){
-      console.log(err);
-    }
-    res.send(Wine);
-  });
+router.put("/deleteWine/:id", function(req,res){
+  var id = req.body.data._id;
+  //console.log("User Id that will be update: ", id);
+  if(!req.body) {
+      return res.send(400);
+  }
+  User.findById(id, function(e,data){
+      if(e) {
+          return res.send(500, e);
+      }
+      if(!data) {
+          return res.send(404);
+      }
+      var update = {
+          winelist: req.body.data.winelist
+      };
+      User.findByIdAndUpdate(id, update, function(err){
+          if(err) {
+              return res.send(500, err);
+          }
+      });
+      console.log("Made it to the end of the Delete Wine Route");
+    });
 });
-
 router.put('/updateWine:id', function(req, res) {
 
     var id = req.body._id;

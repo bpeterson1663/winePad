@@ -1,22 +1,14 @@
 myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDialog","$mdMedia", "WineCellarService", function($scope, $http, $window, $mdDialog, $mdMedia, WineCellarService){
 
-  $http.get("/user").then(function(response){
-        if(response.data !== true){
-          console.log("NOT LOGGED IN!");
-        $window.location.href = '/assets/views/login.html';
-        } else {
-          console.log("LOGGED IN! ", response.data);
-          $http.get("/user/name").then(function(response){
-              console.log(response.data);
-          });
-        }
-    });
+
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
-    wineCellar.getWineList();
+      wineCellar.checkUserLoggedIn();
+
     $scope.wineList = wineCellar.wineList;
   $scope.showConfirm = function(ev, wine) {
     // Appending dialog to document.body to cover sidenav in docs app
+
     var confirm = $mdDialog.confirm()
           .title('Are you sure you want to delete this?')
           .textContent('This will remove the wine and all of its information from your cellar.')
@@ -24,7 +16,6 @@ myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDi
           .targetEvent(ev)
           .ok('Yes')
           .cancel('No');
-
     $mdDialog.show(confirm).then(function() {
       $scope.status = wineCellar.deleteWine(wine);
     }, function() {
