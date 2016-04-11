@@ -24,7 +24,7 @@ app.use(session({
     key: "user",
     resave: true,
     s: false,
-    cookie: {maxAge: 60000, secure: false}
+    cookie: {maxAge: 600000, secure: false}
 }));
 
 app.use(cookieParser());

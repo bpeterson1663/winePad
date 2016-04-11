@@ -8,9 +8,16 @@
       </div>
     </md-toolbar>
     <md-content>
+
+
+
     <md-list ng-controller="MoreInfoController" ng-cloak flex>
+      <div>
+            <label>Search</label>
+            <input ng-model="query" type="text" placeholder="Filter by" autofocus>
+        </div>
       <md-subheader class="md-no-sticky">Current wine in cellar</md-subheader>
-        <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist" ng-click="showMore($event, object)">
+        <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist  | filter:query | orderBy: 'name' " ng-animate=" 'animate' " ng-click="showMore($event, object)">
           <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
           <div class="md-list-item-text" layout="column">
             <h3>{{ object.name}} {{ object.vintage }}</h3>
@@ -23,24 +30,3 @@
       </md-list>
     </md-content>
 </div>
-
-<!--
-<div class="container">
-  <h2>List Page</h2>
-
-  <div class="wine-bottle">
-    <div ng-repeat="object in wineList.response" >
-      <h3>Name: {{ object.name }}</h3>
-      <p>Varietal: {{ object.varietal }}</p>
-      <p>Appellation: {{ object.appelation }}</p>
-      <p>Region: {{ object.region }}</p>
-      <img ng-src="{{object.imgurl}}"  />
-      <p>Cost: ${{ object.cost }}</p>
-      <p>Price: ${{ object.price }}</p>
-      <p>Inventory: {{ object.inventory }} bottle(s)</p>
-      <p>Tasting Notes: {{ object.tastingnotes }}</p>
-      <p>Winery Info: {{ object.wineryinfo }}</p>
-    </div>
-  </div>
-</div>
--->
