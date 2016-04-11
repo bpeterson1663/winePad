@@ -67,14 +67,22 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
     };
 
     var deleteWine = function(wine){
-
       for(var i = 0; i < userInfo.data.winelist.length; i++){
         if(wine.id == userInfo.data.winelist[i].id){
             userInfo.data.winelist.splice(i,1);
         }
-      };
+      }
       console.log("Delete Wine Id: ", wine.id);
       $http.put("/deleteWine/"+ userInfo.data._id, userInfo).then(getWineList());
+    };
+
+    var editWine = function(wine){
+      for(var i = 0; i < userInfo.data.winelist.length; i++){
+        if(wine.id == userInfo.data.winelist[i].id){
+          userInfo.data.winelist[i] = wine;
+        }
+      }
+      $http.put("/updateWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
 
     return {
@@ -86,6 +94,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
         addWine : addWine,
         manuallyAddWine : manuallyAddWine,
         deleteWine : deleteWine,
-        checkUserLoggedIn: checkUserLoggedIn
+        checkUserLoggedIn: checkUserLoggedIn,
+        editWine: editWine
     }
 }]);

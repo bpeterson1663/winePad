@@ -16,7 +16,7 @@ router.get("/getWineDatabase/:id", function(req, res){
         res.send(data);
     });
 });
-
+//Adding new wine to winelist array. Updated existing array with new information
 router.put("/addWineToCellar/:id", function(req, res){
   console.log("Information being sent to the server is: ",req.body);
   var id = req.body.data._id;
@@ -33,16 +33,6 @@ router.put("/addWineToCellar/:id", function(req, res){
       }
       var update = {
           winelist: req.body.data.winelist
-        // varietal: req.body.winelist.varietal,
-        // vintage: req.body.winelist.vintage,
-        // appelation: req.body.winelist.appelation,
-        // region: req.body.winelist.region,
-        // imgurl: req.body.winelist.imgurl,
-        // wineryinfo: req.body.winelist.wineryinfo,
-        // cost: req.body.winelist.cost,
-        // price: req.body.winelist.price,
-        // inventory: req.body.winelist.inventory,
-        // tastingnotes: req.body.winelist.tastingnotes
       };
       console.log("information on variable update: ", update);
       User.findByIdAndUpdate(id, update, function(err){
@@ -54,32 +44,9 @@ router.put("/addWineToCellar/:id", function(req, res){
   console.log("Made it to here");
 });
 
-
-// router.post("/addWineManually", function(req, res){
-//     var newWine = new Wine ({
-//         "name": req.body.name,
-//         "varietal": req.body.varietal,
-//         "vintage" : req.body.vintage,
-//         "appelation": req.body.appelation,
-//         "region": req.body.region,
-//         "imgurl": req.body.imgurl,
-//         "wineryinfo": req.body.wineryinfo,
-//         "cost": req.body.cost,
-//         "price": req.body.price,
-//         "inventory": req.body.inventory,
-//         "tastingnotes": req.body.tastingnotes
-//     });
-//     newWine.save(function(err, data){
-//         if(err){
-//           console.log(err);
-//         }
-//         res.send(data);
-//     });
-// });
-
+//Delete Wine From Array route. Actually updating new array after spliced
 router.put("/deleteWine/:id", function(req,res){
   var id = req.body.data._id;
-  //console.log("User Id that will be update: ", id);
   if(!req.body) {
       return res.send(400);
   }
@@ -98,43 +65,31 @@ router.put("/deleteWine/:id", function(req,res){
               return res.send(500, err);
           }
       });
-      console.log("Made it to the end of the Delete Wine Route");
     });
 });
-router.put('/updateWine:id', function(req, res) {
-
-    var id = req.body._id;
-
-    if(!req.body) {
-        return res.send(400);
-    }
-    User.findById(id, function(e,data){
-        if(e) {
-            return res.send(500, e);
-        }
-        if(!data) {
-            return res.send(404);
-        }
-        var update = {
-          name: req.body.name,
-          varietal: req.body.varietal,
-          vintage: req.body.vintage,
-          appelation: req.body.appelation,
-          region: req.body.region,
-          imgurl: req.body.imgurl,
-          wineryinfo: req.body.wineryinfo,
-          cost: req.body.cost,
-          price: req.body.price,
-          inventory: req.body.inventory,
-          tastingnotes: req.body.tastingnotes
-        };
-        User.findByIdAndUpdate(id, update, function(err){
-            if(err) {
-                return res.send(500, err);
-            }
-        });
+router.put("/updateWine/:id", function(req, res) {
+  console.log("Start of Update Wine");
+  var id = req.body.data._id;
+  if(!req.body) {
+      return res.send(400);
+  }
+  User.findById(id, function(e,data){
+      if(e) {
+          return res.send(500, e);
+      }
+      if(!data) {
+          return res.send(404);
+      }
+      var update = {
+          winelist: req.body.data.winelist
+      };
+      User.findByIdAndUpdate(id, update, function(err){
+          if(err) {
+              return res.send(500, err);
+          }
+      });
+      console.log("Made it to the end of the Update Route");
     });
-    console.log("Made it to here");
 });
 
 router.post("/", passport.authenticate("local", {

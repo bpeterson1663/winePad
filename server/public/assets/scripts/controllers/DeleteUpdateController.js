@@ -56,7 +56,7 @@ $scope.edit = function(ev, wine) {
     };
     $scope.answer = function(response, wine) {
       $mdDialog.hide(response);
-      $http.put("/updateWine"+ wine._id, wine).then(WineCellarService.getWineList());
+      wineCellar.editWine(wine);
     };
   }
 }]);
