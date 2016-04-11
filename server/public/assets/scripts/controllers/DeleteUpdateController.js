@@ -8,7 +8,6 @@ myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDi
     $scope.wineList = wineCellar.wineList;
   $scope.showConfirm = function(ev, wine) {
     // Appending dialog to document.body to cover sidenav in docs app
-
     var confirm = $mdDialog.confirm()
           .title('Are you sure you want to delete this?')
           .textContent('This will remove the wine and all of its information from your cellar.')
@@ -18,6 +17,7 @@ myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDi
           .cancel('No');
     $mdDialog.show(confirm).then(function() {
       $scope.status = wineCellar.deleteWine(wine);
+      $scope.status = wineCellar.getWineList();
     }, function() {
       $scope.status = 'Deleted Nothing';
     });

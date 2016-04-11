@@ -23,14 +23,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
             }
         });
     };
-    //Function to collect wine list from the cellar/database
-    var getWineList = function(){
-      console.log("UserInfo ID inside the getwinelist function =", userInfo.data._id);
-      $http.get("/getWineDatabase/"+userInfo.data._id).then(function(response){
-          wineList.response = response.data;
-          console.log("Wine List From Database", wineList);
-      });
-    };
+
     var getWine = function(){
       var apiKey = "d92bbdc39ab169cf89da261bad304bed";
       $http.get('http://services.wine.com/api/beta2/service.svc/json/catalog?search='+wineSearch+'&size=10&apikey='+apiKey+'').then(function(response){
@@ -49,33 +42,40 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
     //Function to add wine to the winelist array on the user object
     var addWine = function(wine){
       wineListLength = userInfo.data.winelist.length;
-      wine.id = wineListLength;
+      wine.id = wineListLength + 1;
       console.log("Wine to be pushed to the array:", wine);
       userInfo.data.winelist.push(wine);
       console.log("UserInfo ID =", userInfo.data);
-      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList(userInfo));
+      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList());
     };
 
     var manuallyAddWine = function(wine){
       wineListLength = userInfo.data.winelist.length;
-      wine.id = wineListLength;
+      wine.id = wineListLength + 1;
       console.log("Wine to be pushed to the array:", wine);
       userInfo.data.winelist.push(wine);
       console.log("UserInfo ID =", userInfo.data);
-      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList(userInfo));
+      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList());
+    };
+    //Function to collect wine list from the cellar/database
+    var getWineList = function(){
+      console.log("UserInfo ID inside the getwinelist function =", userInfo.data._id);
+      $http.get("/getWineDatabase/"+userInfo.data._id).then(function(response){
+          wineList.response = response.data;
+          console.log("Wine List From Database", wineList);
+      });
     };
 
-
     var deleteWine = function(wine){
+
       for(var i = 0; i < userInfo.data.winelist.length; i++){
-        if(i == userInfo.data.winelist[i].id){
+        if(wine.id == userInfo.data.winelist[i].id){
             userInfo.data.winelist.splice(i,1);
         }
       };
       console.log("Delete Wine Id: ", wine.id);
-      $http.put("/deleteWine/"+ userInfo.data._id, userInfo).then(getWineList(userInfo));
+      $http.put("/deleteWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
-
 
     return {
         wine : wine,
