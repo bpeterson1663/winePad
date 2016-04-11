@@ -11,7 +11,6 @@ var UserSchema = new Schema({
   email: {type: String, required: true},
   lastlogin: {type: Date, default: Date.now},
   winelist: {type: Array}
-
 });
 
 UserSchema.pre("save", function(next){

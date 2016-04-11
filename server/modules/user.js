@@ -15,7 +15,6 @@ router.get("/name", function(req,res,next){
         datecreated: req.user.lastlogin,
         winelist: req.user.winelist
     };
-    console.log("User Information:",resUser);
     res.json(resUser);
 });
 

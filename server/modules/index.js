@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var passport = require('passport');
-var Wine = require('../models/newWine.js');
+// var Wine = require('../models/newWine.js');
 var User = require("../models/user");
 
-router.get("/getWineDatabase", function(req, res){
-  Wine.find({}, function(err, data){
+router.get("/getWineDatabase/:id", function(req, res){
+    var id = req.body.data._id;
+  User.find({id}, function(err, data){
       if(err) {
         console.log(err);
       }
@@ -14,10 +15,10 @@ router.get("/getWineDatabase", function(req, res){
   });
 });
 
-router.put("/addWineToCellar:id", function(req, res){
-  console.log("Req.body is: ",req.body);
-  var id = req.body._id;
-  console.log("ID: ", ID);
+router.put("/addWineToCellar/:id", function(req, res){
+  console.log("Information being sent to the server is: ",req.body);
+  var id = req.body.data._id;
+  //console.log("User Id that will be update: ", id);
   if(!req.body) {
       return res.send(400);
   }
@@ -29,18 +30,19 @@ router.put("/addWineToCellar:id", function(req, res){
           return res.send(404);
       }
       var update = {
-        name: req.body.winelist.name,
-        varietal: req.body.winelist.varietal,
-        vintage: req.body.winelist.vintage,
-        appelation: req.body.winelist.appelation,
-        region: req.body.winelist.region,
-        imgurl: req.body.winelist.imgurl,
-        wineryinfo: req.body.winelist.wineryinfo,
-        cost: req.body.winelist.cost,
-        price: req.body.winelist.price,
-        inventory: req.body.winelist.inventory,
-        tastingnotes: req.body.winelist.tastingnotes
+          winelist: req.body.data.winelist
+        // varietal: req.body.winelist.varietal,
+        // vintage: req.body.winelist.vintage,
+        // appelation: req.body.winelist.appelation,
+        // region: req.body.winelist.region,
+        // imgurl: req.body.winelist.imgurl,
+        // wineryinfo: req.body.winelist.wineryinfo,
+        // cost: req.body.winelist.cost,
+        // price: req.body.winelist.price,
+        // inventory: req.body.winelist.inventory,
+        // tastingnotes: req.body.winelist.tastingnotes
       };
+      console.log("information on variable update: ", update);
       User.findByIdAndUpdate(id, update, function(err){
           if(err) {
               return res.send(500, err);
@@ -50,51 +52,28 @@ router.put("/addWineToCellar:id", function(req, res){
   console.log("Made it to here");
 });
 
-router.post("/addWineToCellar", function(req, res){
-  var newWine = new Wine ({
-      "name": req.body.Name,
-      "varietal": req.body.Varietal.Name,
-      "vintage": req.body.Vintage,
-      "appelation": req.body.Appellation.Name,
-      "region": req.body.Appellation.Region.Name,
-      "imgurl": req.body.Labels[0].Url,
-      "wineryinfo": req.body.Vineyard.Url,
-      "cost": req.body.cost,
-      "price": req.body.price,
-      "inventory": req.body.inventory,
-      "tastingnotes": req.body.Community.Url
-  });
 
-
-  newWine.save(function(err, data){
-      if(err){
-        console.log(err);
-      }
-      res.send(data);
-  });
-});
-
-router.post("/addWineManually", function(req, res){
-    var newWine = new Wine ({
-        "name": req.body.name,
-        "varietal": req.body.varietal,
-        "vintage" : req.body.vintage,
-        "appelation": req.body.appelation,
-        "region": req.body.region,
-        "imgurl": req.body.imgurl,
-        "wineryinfo": req.body.wineryinfo,
-        "cost": req.body.cost,
-        "price": req.body.price,
-        "inventory": req.body.inventory,
-        "tastingnotes": req.body.tastingnotes
-    });
-    newWine.save(function(err, data){
-        if(err){
-          console.log(err);
-        }
-        res.send(data);
-    });
-});
+// router.post("/addWineManually", function(req, res){
+//     var newWine = new Wine ({
+//         "name": req.body.name,
+//         "varietal": req.body.varietal,
+//         "vintage" : req.body.vintage,
+//         "appelation": req.body.appelation,
+//         "region": req.body.region,
+//         "imgurl": req.body.imgurl,
+//         "wineryinfo": req.body.wineryinfo,
+//         "cost": req.body.cost,
+//         "price": req.body.price,
+//         "inventory": req.body.inventory,
+//         "tastingnotes": req.body.tastingnotes
+//     });
+//     newWine.save(function(err, data){
+//         if(err){
+//           console.log(err);
+//         }
+//         res.send(data);
+//     });
+// });
 
 router.delete("/wine/:id", function(req,res){
   Wine.findByIdAndRemove(req.params.id, function(err,Wine){
@@ -112,7 +91,7 @@ router.put('/updateWine:id', function(req, res) {
     if(!req.body) {
         return res.send(400);
     }
-    Wine.findById(id, function(e,data){
+    User.findById(id, function(e,data){
         if(e) {
             return res.send(500, e);
         }
@@ -132,7 +111,7 @@ router.put('/updateWine:id', function(req, res) {
           inventory: req.body.inventory,
           tastingnotes: req.body.tastingnotes
         };
-        Wine.findByIdAndUpdate(id, update, function(err){
+        User.findByIdAndUpdate(id, update, function(err){
             if(err) {
                 return res.send(500, err);
             }

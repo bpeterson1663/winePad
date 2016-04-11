@@ -18,14 +18,5 @@ router.post("/", function(req, res, next){
   });
 });
 
-router.post("/", function(req, res, next){
-    User.create(req.body, function(err,post){
-        if(err){
-          next(err);
-        } else {
-          res.redirect("/");
-        }
-    });
-});
 
 module.exports = router;
