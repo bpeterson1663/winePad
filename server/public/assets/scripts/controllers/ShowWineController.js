@@ -3,7 +3,7 @@ myApp.controller("ShowWineController", ["$scope", '$http', "$window", "WineCella
     var wineCellar = WineCellarService;
     //Check if user is logged in
     wineCellar.checkUserLoggedIn();
-    wineCellar.getWineList();
+    //wineCellar.getWineList();
 
     $scope.wineList = wineCellar.wineList;
 }]);

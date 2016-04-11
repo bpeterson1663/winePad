@@ -1,6 +1,7 @@
 <div class="md-padding" ng-cloak>
   <h2>Add Wine Manually</h2>
-  <form ng-submit="manuallyAdd(wineObject)">
+
+  <form>
     <div layout="row">
     <md-input-container>
       <label>Name: </label>
@@ -12,31 +13,39 @@
     </md-input-container><br />
     <md-input-container>
       <label>Vintage: </label>
-      <input ng-model="WineObject.vintage" type="text" id="vintage" />
+      <input ng-model="wineObject.vintage" type="text" id="vintage" />
     </md-input-container>
     <md-input-container>
-      <label>Appelation: </label>
-        <input ng-model="wineObject.appelation" type="text" id="appelation"/>
+      <label>Appellation: </label>
+        <input ng-model="wineObject.appellation" type="text" id="appellation"/>
     </md-input-container><br />
     <md-input-container>
       <label>Region: </label>
-      <input ng-model="WineObject.region" type="text" id="region" />
+      <input ng-model="wineObject.region" type="text" id="region" />
     </md-input-container>
     <md-input-container>
       <label>Image URL: </label>
-      <input ng-model="WineObject.imgurl" type="text" id="imgurl" />
+      <input ng-model="wineObject.imgurl" type="text" id="imgurl" />
+    </md-input-container><br />
+    <md-input-container>
+      <label>Winery Info: </label>
+      <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo" />
+    </md-input-container><br />
+    <md-input-container>
+      <label>Tasting Notes: </label>
+      <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes" />
     </md-input-container><br />
     <md-input-container>
       <label>Cost: $</label>
-      <input ng-model="WineObject.cost" type="text" id="cost" />
+      <input ng-model="wineObject.cost" type="text" id="cost" />
     </md-input-container>
     <md-input-container>
       <label>Price: $</label>
-      <input ng-model="WineObject.price" type="text" id="price" />
+      <input ng-model="wineObject.price" type="text" id="price" />
     </md-input-container>
     <md-input-container>
       <label>Inventory: </label>
-      <input ng-model="WineObject.inventory" type="text" id="inventory" />
+      <input ng-model="wineObject.inventory" type="text" id="inventory" />
     </md-input-container><br />
     <!--<md-input-container>
       <label>Tasting Notes URL: </label>
@@ -47,7 +56,7 @@
       <input ng-model="WineObject.wineryinfo" type="text" id="wineryinfo" />
     </md-input-container>-->
   </div>
-    <md-button type="submit" class="md-primary md-raised" ng-click="showAddConfirm($event)" >
+    <md-button type="submit" class="md-primary md-raised" ng-click="showAddConfirmManual($event, wineObject)" >
      Add Wine
    </md-button>
   </form>

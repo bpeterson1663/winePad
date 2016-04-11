@@ -13,8 +13,8 @@
         <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist" ng-click="showMore($event, object)">
           <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
           <div class="md-list-item-text" layout="column">
-            <h3>{{ object.Name}} {{ object.vintage }}</h3>
-            <h4>{{ object.Varietal }}</h4>
+            <h3>{{ object.name}} {{ object.vintage }}</h3>
+            <h4>{{ object.varietal }}</h4>
             <p>Price: ${{ object.price }}</p>
             <p>{{ object.inventory}} bottle(s)</p>
           </div>

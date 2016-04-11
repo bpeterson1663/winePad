@@ -1,4 +1,4 @@
-myApp.factory("WineCellarService", ["$http", function($http){
+myApp.factory("WineCellarService", ["$http", "$window", function($http, $window){
     var wine = {};//wine object returned from API
     var wineList = {}; //wineList object returned from the database/cellar
     var wineSearch = "Argyle";//keyword search in API
@@ -14,8 +14,10 @@ myApp.factory("WineCellarService", ["$http", function($http){
               $http.get("/user/name").then(function(response){//go and grab user data if succesfully logged in
                 // console.log("Response From Logged In:",response);
                 userInfo = response; //store information into userInfo
+                getWineList();
                 console.log("checkUserLoggedIn function:", userInfo);
               });
+
             }
         });
     };
@@ -36,22 +38,22 @@ myApp.factory("WineCellarService", ["$http", function($http){
       getWine();
     };
     //Function to add wine to the winelist array on the user object
-    var addWine = function(addWine){
-      console.log("Wine to be pushed to the array:", addWine);
-      userInfo.data.winelist.push(addWine);
+    var addWine = function(wine){
+      console.log("Wine to be pushed to the array:", wine);
+      userInfo.data.winelist.push(wine);
       console.log("UserInfo ID =", userInfo.data);
-      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList());
+      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList(userInfo));
     };
 
-    var manuallyAddWine = function(addWine){
-      userInfo.data.winelist.push(addWine);
-      $http.post("/addWineManually", userInfo).then(function(response){
-        getWineList();
-      });
+    var manuallyAddWine = function(wine){
+      console.log("Wine to be pushed to the array:", wine);
+      userInfo.data.winelist.push(wine);
+      console.log("UserInfo ID =", userInfo.data);
+      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList(userInfo));
     };
     //Function to collect wine list from the cellar/database
     var getWineList = function(){
-      console.log("UserInfo ID inside the getwinelist function =", userInfo.data);
+      console.log("UserInfo ID inside the getwinelist function =", userInfo.data._id);
       $http.get("/getWineDatabase/"+userInfo.data._id).then(function(response){
           wineList.response = response.data;
           console.log("Wine List From Database", wineList);
@@ -63,8 +65,6 @@ myApp.factory("WineCellarService", ["$http", function($http){
         getWineList();
       });
     };
-
-
 
     return {
         wine : wine,

@@ -6,13 +6,15 @@ var passport = require('passport');
 var User = require("../models/user");
 
 router.get("/getWineDatabase/:id", function(req, res){
-    var id = req.body.data._id;
-  User.find({id}, function(err, data){
-      if(err) {
-        console.log(err);
-      }
-      res.send(data);
-  });
+    var id = req.user._id;
+    console.log("ID in the get route is: ", req.user._id);
+
+    User.findById(id, function(err, data){
+        if(err) {
+          console.log(err);
+        }
+        res.send(data);
+    });
 });
 
 router.put("/addWineToCellar/:id", function(req, res){
