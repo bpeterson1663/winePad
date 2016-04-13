@@ -13,7 +13,8 @@
     <script src="/assets/vendors/angular-messages.min.js" type="text/javascript"></script>
     <script src="/assets/vendors/angular-aria.min.js" type="text/javascript"></script>
     <script src="/assets/vendors/angular-material.min.js" type="text/javascript" ></script>
-    <script src="/assets/vendors/angular-sanitize.min.js" type="text/javascript" ></script>
+    <script src="/assets/vendors/angular-fullscreen.js" type="text/javascript"></script>
+
     <script src="/assets/scripts/app.js" type="text/javascript"></script>
     <script src="/assets/scripts/controllers/AddWineController.js" type="text/javascript"></script>
     <script src="/assets/scripts/controllers/DeleteUpdateController.js" type="text/javascript"></script>
@@ -21,54 +22,10 @@
     <script src="/assets/scripts/controllers/NavigationController.js" type="text/javascript"></script>
     <script src="/assets/scripts/controllers/ProgressWheelController.js" type="text/javascript"></script>
     <script src="/assets/scripts/controllers/ShowWineController.js" type="text/javascript"></script>
+    <script src="/assets/scripts/controllers/WineDisplayController.js" type="text/javascript"></script>
     <script src="/assets/scripts/factories.js" type="text/javascript"></script>
   </head>
   <body>
-  <div ng-controller="NavigationController" ng-cloak>
-    <md-toolbar layout="row" class="md-hue-3">
-        <div class="md-toolbar-tools">
-          <span>winePad</span>
-          <md-button ng-click="logOutUser()" class="md-primary md-raised" hide-gt-md>
-            Log Out
-          </md-button>
-        </div>
-      </md-toolbar>
-
-    <section class="md-theme-indigo" layout="row" flex>
-      <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>Main Menu</md-button>
-      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
-        <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Main Menu</h1>
-        </md-toolbar>
-        <md-content layout-padding ng-controller="LeftCtrl">
-          <md-list-item>
-            <md-button ng-click="close()" href="#home" class="md-primary md-raised" hide-gt-md flex>
-              Home
-            </md-button>
-          </md-list-item>
-          <md-list-item>
-            <md-button ng-click="close()" href="#add" class="md-primary md-raised" hide-gt-md flex>
-              Add
-            </md-button>
-          </md-list-item>
-          <md-list-item>
-            <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised" hide-gt-md flex>
-              Delete / Update
-            </md-button>
-          </md-list-item>
-          <md-list-item>
-            <md-button ng-click="close()" href="#reports" class="md-primary md-raised" hide-gt-md flex>
-              Reports
-            </md-button>
-          </md-list-item>
-        </md-content>
-      </md-sidenav>
-      <md-content flex layout-padding>
-        <main ng-view>
-        </main>
-      <div flex></div>
-      </md-content>
-    </section>
-  </div>
+    <div ng-include src="'partials/navigation.html'"></div>
   </body>
 </html>

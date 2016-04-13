@@ -1,3 +1,4 @@
+//progress wheel for add new wine searching api
 myApp.controller('ProgressWheel', ['$interval',
     function($interval) {
       var self = this;
@@ -8,7 +9,7 @@ myApp.controller('ProgressWheel', ['$interval',
       $interval(function() {
         self.determinateValue += 1;
         if (self.determinateValue > 100) {
-          self.determinateValue = 30;
+          self.determinateValue = 0;
         }
       }, 100);
     }

@@ -1,0 +1,39 @@
+{
+  "name": "ng-morphing-modal",
+  "homepage": "https://github.com/shauchenka/ng-morphing-modal",
+  "authors": [
+    "Anton <anton@trackduck.com>"
+  ],
+  "description": "Angular directive for fullscreen modal window with wonderful animation in trending Material Design style. Responsive and mobile-ready.",
+  "main": "build/js/ngMorphingModal.js",
+  "keywords": [
+    "angular",
+    "material",
+    "design",
+    "animation",
+    "modal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.x",
+    "angular": "1.3.x",
+    "velocity": "1.1.X"
+  },
+  "_release": "77eb56b837",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "77eb56b8370e8d9e524de3278987c90df8bc61ee"
+  },
+  "_source": "https://github.com/shauchenka/ng-morphing-modal.git",
+  "_target": "*",
+  "_originalSource": "ng-morphing-modal",
+  "_direct": true
+}

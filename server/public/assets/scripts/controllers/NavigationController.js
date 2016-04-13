@@ -1,20 +1,20 @@
-myApp.controller('NavigationController', function ($scope, $http, $timeout, $mdSidenav, $log) {
+myApp.controller('NavigationController', function ($scope, $http, $timeout, $mdSidenav, $log, WineCellarService) {
+    var wineCellar = WineCellarService;
+    wineCellar.checkUserLoggedIn();
+    //logOutUswer function not working
     $scope.logOutUser = function(){
         $http.get('/logout').then(function(response){
               console.log("LOGGED OUT");
               res.redirect('/assets/views/login.html');
           });
     };
-
+    //Angular Material for side-nav
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
-    /**
-     * Supplies a function that will continue to operate until the
-     * time is up.
-     */
+
     function debounce(func, wait, context) {
       var timer;
       return function debounced() {
@@ -27,10 +27,7 @@ myApp.controller('NavigationController', function ($scope, $http, $timeout, $mdS
         }, wait || 10);
       };
     }
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
+
     function buildDelayedToggler(navID) {
       return debounce(function() {
         $mdSidenav(navID)

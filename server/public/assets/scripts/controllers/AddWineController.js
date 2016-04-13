@@ -29,18 +29,11 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
       $scope.wineSelection = wineCellar; //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom as the search result
 
     };
-
-
-    // $scope.manuallyAdd = function(addWine){
-    //   wineCellar.manuallyAddWine(addWine);
-    //   wineCellar.getWineList();
-    // };
-
     //show a confirmation that when the Add Wine Button is pressed a message pops up asking would you like to add another wine yes or no while adding the wine to the winelist array on the user object
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     $scope.showAddConfirm = function(ev, addWine) {
-      console.log("Wine Information neded to be abstracted: ", addWine);
+      //abstract wine information into a variable called wine
       var wine = {
          name: addWine.Name,
          varietal: addWine.Varietal.Name,
@@ -54,10 +47,8 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
          inventory: addWine.inventory,
          tastingnotes: addWine.Community.Reviews.Url
       };
-      console.log("Wine object abstracted: ", wine);
 
       wineCellar.addWine(wine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object
-      //wineCellar.getWineList();
       //confirmation message
       var confirm = $mdDialog.confirm()//
             .title('Would you like to add another wine?')
@@ -71,9 +62,8 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
         $scope.status = $location.url("home");//redirect if they press no
       });
   };
-
+  //manually entering wine
   $scope.showAddConfirmManual = function(ev, addWine) {
-
     wineCellar.manuallyAddWine(addWine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object
     //wineCellar.getWineList();
     //confirmation message
@@ -100,5 +90,4 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
         $mdDialog.hide(answer);
       };
   }
-
 }]);

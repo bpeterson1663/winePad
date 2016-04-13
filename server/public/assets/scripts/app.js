@@ -1,4 +1,4 @@
-var myApp = angular.module("myApp", ["ngRoute", "ngMaterial", "ngAnimate", "ngSanitize"]);
+var myApp = angular.module("myApp", ["ngRoute", "ngMaterial", "ngAnimate","FBAngular"]);
 
 myApp.config(["$routeProvider", function($routeProvider){
   $routeProvider.
@@ -16,6 +16,10 @@ myApp.config(["$routeProvider", function($routeProvider){
     }).
     when('/reports', {
       templateUrl: "/assets/views/routes/reports.html"
+    }).
+    when('/wineDisplay', {
+      templateUrl: "/assets/views/routes/wineDisplay.html",
+      controller: "WineDisplayController"
     }).
     otherwise({
       redirect:'/home'

@@ -1,12 +1,10 @@
 myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDialog","$mdMedia", "WineCellarService", function($scope, $http, $window, $mdDialog, $mdMedia, WineCellarService){
-
-
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
-      wineCellar.checkUserLoggedIn();
+    wineCellar.checkUserLoggedIn();
 
     $scope.wineList = wineCellar.wineList;
-  $scope.showConfirm = function(ev, wine) {
+    $scope.showConfirm = function(ev, wine) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
           .title('Are you sure you want to delete this?')
@@ -15,20 +13,20 @@ myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDi
           .targetEvent(ev)
           .ok('Yes')
           .cancel('No');
-    $mdDialog.show(confirm).then(function() {
-      $scope.status = wineCellar.deleteWine(wine);
-      $scope.status = wineCellar.getWineList();
+      $mdDialog.show(confirm).then(function() {
+      $scope.status = wineCellar.deleteWine(wine);//calls deleteWine function on the factory to update the array winelist
+      $scope.status = wineCellar.getWineList();//redisplay the wine list
     }, function() {
       $scope.status = 'Deleted Nothing';
     });
   };
-//Edit
-$scope.edit = function(ev, wine) {
+  //Edit Function called
+  $scope.edit = function(ev, wine) {
     $scope.wine = wine;
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: DialogController,
-      templateUrl: 'dialogs/editWine.html',
+      templateUrl: 'dialogs/editWine.html',//editWine dialog that pops up
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
@@ -37,7 +35,7 @@ $scope.edit = function(ev, wine) {
       preserveScope: true
     })
     .then(function(answer) {
-      $scope.status = wineCellar.getWineList();;
+      $scope.status = wineCellar.getWineList();//redisplay wine list to display updates
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
@@ -47,7 +45,7 @@ $scope.edit = function(ev, wine) {
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
-  function DialogController($scope, $http, $mdDialog, WineCellarService) {
+  function DialogController($scope, $mdDialog, WineCellarService) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -56,7 +54,7 @@ $scope.edit = function(ev, wine) {
     };
     $scope.answer = function(response, wine) {
       $mdDialog.hide(response);
-      wineCellar.editWine(wine);
+      wineCellar.editWine(wine);//calls the editWine function and passes the updated information from the dialog box
     };
   }
 }]);

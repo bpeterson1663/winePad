@@ -1,11 +1,10 @@
-myApp.controller('MoreInfoController', function($scope, $sce, $mdDialog) {
+myApp.controller('MoreInfoController', function($scope, $mdDialog, WineCellarService) {
+  var wineCellar = WineCellarService;
+  wineCellar.checkUserLoggedIn();
+  //function that is called when the wine is clicked on the homepage
   $scope.showMore = function(ev, wine) {
-   $scope.wine = wine;
 
-   $scope.trustSrc = function(src){
-     console.log(src);
-     return $sce.trustAsResourceUrl(src);
-   };
+   $scope.wine = wine;
 
    $mdDialog.show({
      controller: ShowMoreDialogController,
