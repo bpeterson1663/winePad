@@ -1,4 +1,4 @@
-myApp.controller('WineDisplayController', function($scope, $mdDialog, WineCellarService, $location) {
+myApp.controller('WineDisplayController',["$scope","$window","$location","$mdDialog", "$http", "$mdMedia","WineCellarService", function($scope, $window, $location, $mdDialog, $http, $mdMedia, WineCellarService) {
   var wineCellar = WineCellarService;
   wineCellar.checkUserLoggedIn();
   wineCellar.getWineList();
@@ -9,6 +9,7 @@ myApp.controller('WineDisplayController', function($scope, $mdDialog, WineCellar
         $scope.isFullscreen = !$scope.isFullscreen;
     }
   //function that is called when the wine is clicked on the homepage
+
   $scope.showWineList = function(ev) {
    $mdDialog.show({
      controller: ShowWineListDialog,
@@ -54,7 +55,7 @@ myApp.controller('WineDisplayController', function($scope, $mdDialog, WineCellar
        }, function() {
          $scope.status = 'You cancelled the dialog.';
        });
-     };
+  };
 
   function ShowMoreDialogController($scope, $mdDialog) {
        $scope.hide = function() {
@@ -79,16 +80,14 @@ myApp.controller('WineDisplayController', function($scope, $mdDialog, WineCellar
           .cancel('No');
     $mdDialog.show(confirm).then(function() {
       //NOT WORKING CURRENTLY
-      sellWine.inventory = parseInt(sellWine.inventory) - 1;//subtract one bottle from inventory
+      console.log("Wine inventory before being sold", sellWine.inventory);
+      sellWine.inventory--;//subtract one bottle from inventory
       console.log("New Wine inventory after being sold: ",sellWine.inventory);
-      if(sellWine.inventory == 0){//if last bottle is sold remove from list
-        wineCellar.deleteWine(sellWine);
-      }
       wineCellar.editWine(sellWine);
-      $scope.status = $scope.showWineList();//reload list
+      $scope.status = $scope.showWineList();
     }, function() {
-      $scope.status = $scope.showWineList();;//redirect back to listif they press no
+      $scope.status = $scope.showWineList();//reload list
     });
 };
 
-});
+}]);

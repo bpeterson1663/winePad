@@ -1,18 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title>winePad</title>
+    <link href="/assets/styles/angular-material.min.css" rel="stylesheet"  />
+    <link href="/assets/styles/styles.css" rel="stylesheet"  />
+
+    <script src="/assets/vendors/angular.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-material.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-route.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-animate.min.js" type="text/javascript" ></script>
+    <script src="/assets/vendors/angular-messages.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-aria.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-material.min.js" type="text/javascript" ></script>
+
+    <script src="/assets/scripts/app.js" type="text/javascript"></script>
+
+    <script src="/assets/scripts/controllers/LoginController.js" type="text/javascript"></script>
+
   </head>
   <body>
     <h1>winePad</h1>
-    <form action="/" method="POST">
-        <label for="username">USERNAME: </label>
-        <input type="text" name="username" id="username" />
-        <label for="password">PASSWORD: </label>
-        <input type="text" name="password" id="password" />
-        <input type="submit" value="Login" />
-    </form>
-    <a href="/assets/views/registration.html">REGISTER</a>
-  </body>
+          <div layout="column" layout-align="center center" layout-fill="layout-fill">
+             <form action="/" method="POST" layout="column" class="loginBox md-whiteframe-z1">
+               <md-toolbar>
+                 <h1 class="md-toolbar-tools">Welcome</h1>
+               </md-toolbar>
+               <md-content layout="column" class="md-padding">
+                 <md-input-container>
+                    <label for="username">USERNAME: </label>
+                    <input type="text" name="username" id="username"/>
+                 </md-input-container>
+                 <md-input-container>
+                    <label for="password">PASSWORD: </label>
+                    <input type="password"name="password" id="password"/>
+                 </md-input-container>
+                 <div layout="row" layout-align="top center" style="padding-top:20px;">
+                    <md-button type="submit" class="md-raised md-primary">Login</md-button>
+                    <div flex="flex"></div>
+                    <md-button href="/assets/views/registration.html" md-no-ink="md-no-ink">REGISTER</md-button>
+                 </div>
+              </md-content>
+            </form>
+          </div>
+</body>
 </html>

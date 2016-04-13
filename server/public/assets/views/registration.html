@@ -1,25 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title>Registration</title>
+    <link href="/assets/styles/angular-material.min.css" rel="stylesheet"  />
+    <link href="/assets/styles/styles.css" rel="stylesheet"  />
+
+    <script src="/assets/vendors/angular.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-material.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-route.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-animate.min.js" type="text/javascript" ></script>
+    <script src="/assets/vendors/angular-messages.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-aria.min.js" type="text/javascript"></script>
+    <script src="/assets/vendors/angular-material.min.js" type="text/javascript" ></script>
+
+    <script src="/assets/scripts/app.js" type="text/javascript"></script>
+
+    <script src="/assets/scripts/controllers/LoginController.js" type="text/javascript"></script>
   </head>
   <body>
-
-    <form action="/register" method="POST">
-      <label for="username">USERNAME: </label>
-      <input type="text" name="username" id="username" />
-      <label for="password">PASSWORD: </label>
-      <input type="password" name="password" id="password" />
-      <label for="firstname">FIRST NAME: </label>
-      <input type="text" name="firstname" id="firstname" />
-      <label for="lastname">LAST NAME: </label>
-      <input type="text" name="lastname" id="lastname" />
-      <label for="email">EMAIL: </label>
-      <input type="email" name="email" id="email" />
-
-      <input type="submit" value="Create User" />
-    </form>
-    <a href="/assets/views/index.html">LOGIN</a>
+    <div layout="column" layout-align="center center" layout-fill="layout-fill">
+       <form action="/register" method="POST" layout="column" class="loginBox md-whiteframe-z1">
+         <md-toolbar>
+           <h1 class="md-toolbar-tools center-align">Registration</h1>
+         </md-toolbar>
+         <md-content layout="column" class="md-padding">
+           <md-input-container>
+              <label for="username">USERNAME: </label>
+              <input type="text" name="username" id="username"/>
+           </md-input-container>
+           <md-input-container>
+              <label for="password">PASSWORD: </label>
+              <input type="password"name="password" id="password"/>
+           </md-input-container>
+           <md-input-container>
+              <label for="firstname">FIRST NAME: </label>
+              <input type="firstname" name="firstname" id="firstname"/>
+           </md-input-container>
+           <md-input-container>
+              <label for="lastname">LAST NAME: </label>
+              <input type="lastname"name="lastname" id="lastname"/>
+           </md-input-container>
+           <md-input-container>
+              <label for="email">EMAIL: </label>
+              <input type="email" name="email" id="email"/>
+           </md-input-container>
+           <div layout="row" layout-align="top center" style="padding-top:20px;">
+              <md-button type="submit" class="md-raised md-primary">Create User</md-button>
+              <div flex="flex"></div>
+              <md-button href="/assets/views/index.html" md-no-ink="md-no-ink">Login Page</md-button>
+           </div>
+        </md-content>
+      </form>
+    </div>
   </body>
 </html>

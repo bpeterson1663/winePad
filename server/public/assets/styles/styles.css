@@ -1,7 +1,30 @@
 body{
+  margin-top: 0;
+  background: url('../images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: transparent;
 }
 main{
   margin: 0 auto;
+}
+.loginBox {
+  max-width:  90%;
+  width: 500px
+}
+.add-wine-box{
+  max-width:  90%;
+  width: 800px;
+  background-color:white;
+  opacity: .9;
+}
+.float-right{
+  float: right;
+}
+.transparent{
+  background-color: transparent;
+}
+.see-through{
+  background-color: rgb(149, 77, 77, 0.5);
 }
 .fixed{
   position: fixed;

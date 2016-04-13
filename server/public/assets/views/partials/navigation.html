@@ -2,7 +2,7 @@
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>winePad</span>
-        <md-button ng-click="logOutUser()" class="md-primary md-raised" hide-gt-md>Log Out</md-button>
+        <md-button ng-click="logOutUser()" class="md-primary md-raised float-right" hide-gt-md>Log Out</md-button>
       </div>
     </md-toolbar>
   <section class="md-theme-indigo" layout="row" flex>
@@ -11,31 +11,25 @@
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Main Menu</h1>
       </md-toolbar>
-      <md-content layout-padding ng-controller="LeftCtrl">
+      <md-content  layout-padding ng-controller="LeftCtrl">
         <md-list-item>
-          <md-button ng-click="close()" href="#home" class="md-primary md-raised" hide-gt-md flex>Home</md-button>
+          <md-button ng-click="close()" href="#home" class="md-primary md-raised"flex>Home</md-button>
         </md-list-item>
         <md-list-item>
-          <md-button ng-click="close()" href="#add" class="md-primary md-raised" hide-gt-md flex>Add</md-button>
+          <md-button ng-click="close()" href="#add" class="md-primary md-raised" flex>Add</md-button>
         </md-list-item>
         <md-list-item>
-          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised" hide-gt-md flex>
-            Delete / Update
-          </md-button>
+          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised"flex>Delete / Update</md-button>
         </md-list-item>
         <md-list-item>
-          <md-button ng-click="close()" href="#reports" class="md-primary md-raised" hide-gt-md flex>
-            Reports
-          </md-button>
+          <md-button ng-click="close()" href="#reports" class="md-primary md-raised" flex>Reports</md-button>
         </md-list-item>
         <md-list-item>
-          <md-button ng-click="close()" href="#wineDisplay" class="md-primary md-raised" hide-gt-md flex>
-            Wine Display
-          </md-button>
+          <md-button ng-click="close()" href="#wineDisplay" class="md-primary md-raised" flex>Wine Display</md-button>
         </md-list-item>
       </md-content>
     </md-sidenav>
-    <md-content flex layout-padding>
+    <md-content flex layout-padding  class="transparent">
       <main ng-view>
       </main>
     <div flex></div>
