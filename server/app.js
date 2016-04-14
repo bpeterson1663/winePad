@@ -18,7 +18,6 @@ var index = require("./modules/index.js");
 var register = require("./modules/register.js");
 var user = require("./modules/user.js");
 
-
 app.use(session({
     secret: "secret",
     key: "user",

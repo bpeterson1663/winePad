@@ -54,30 +54,57 @@ main{
   background-color: #A87879;
 }
 
-.animate.ng-enter,
-.animate.ng-leave
-{
-    -webkit-transition: 675ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 675ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 675ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 675ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 675ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    position: relative;
-    display: block;
+.animate-repeat {
+  height: 100px;
+  min-height: 100px;
 }
 
-.animate.ng-enter.ng-enter-active,
-.animate.ng-leave {
-    opacity: 1;
-    top: 0;
-    height: 30px;
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
-.animate.ng-leave.ng-leave-active,
-.animate.ng-enter {
-    opacity: 0;
-    top: -50px;
-    height: 0px;
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+  height: 0;
+  min-height: 0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 82px;
+  min-height: 82px;
+}
+
+.animate-repeat.ng-leave-stagger {
+  /* this will have a 100ms delay between each successive leave animation */
+  -webkit-transition-delay: 0.125s;
+  transition-delay: 0.125s;
+
+  /* in case the stagger doesn't work then these two values
+   must be set to 0 to avoid an accidental CSS inheritance */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+/**
+ * Stagger ENTER ANIMATION
+ */
+.animate-repeat.ng-enter-stagger {
+  /* this will have a 100ms delay between each successive enter animation */
+  -webkit-transition-delay: 0.125s;
+  transition-delay: 0.125s;
+
+  /* in case the stagger doesn't work then these two values
+   must be set to 0 to avoid an accidental CSS inheritance */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
 }
 
 md-dialog.fullscreen-dialog {
