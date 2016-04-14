@@ -11,15 +11,15 @@
       <md-input-container>
         <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
       </md-input-container>
-        <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist  | filter:query | orderBy: 'name' " ng-animate="'animate'" ng-click="showMore($event, object)">
-          <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ object.name}} {{ object.vintage }}</h3>
-            <h4>{{ object.varietal }}</h4>
-            <p>Price: ${{ object.price }}</p>
-            <p>{{ object.inventory}} bottle(s)</p>
-          </div>
-        </md-list-item>
+          <md-list-item class="md-3-line"  ng-class="'animate'" ng-repeat="object in wineList.response.winelist  | filter:query | orderBy: 'name' "ng-click="showMore($event, object)">
+            <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
+            <div class="md-list-item-text" layout="column"  >
+              <h3>{{ object.name}} {{ object.vintage }}</h3>
+              <h4>{{ object.varietal }}</h4>
+              <p>Price: ${{ object.price }}</p>
+              <p>{{ object.inventory}} bottle(s)</p>
+            </div>
+          </md-list-item>
         <md-divider ></md-divider>
       </md-list>
     </md-content>
