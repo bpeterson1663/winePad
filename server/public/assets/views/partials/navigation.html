@@ -1,14 +1,15 @@
 <div ng-controller="NavigationController" ng-cloak>
-    <md-toolbar layout="row" class="md-hue-3">
+    <md-toolbar layout="row"  layout-align="right center"  class="md-hue-3">
       <div class="md-toolbar-tools">
-        <span>winePad</span>
-        <md-button ng-click="logOutUser()" class="md-primary md-raised float-right" hide-gt-md>Log Out</md-button>
+        <h1>winePad&nbsp;&nbsp;&nbsp;&nbsp;</h1><br/>
+        <h6>Welcome, {{userInfo.wineList.response.firstname}}</h6>
+        <!--<md-button ng-click="logOutUser()" class="md-primary md-raised float-right" hide-gt-md>Log Out</md-button>-->
       </div>
     </md-toolbar>
-  <section class="md-theme-indigo" layout="row" flex>
+  <section class="md-theme-red" layout="row">
     <md-button ng-click="toggleLeft()" class="md-primary md-raised" hide-gt-md>Main Menu</md-button>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
-      <md-toolbar class="md-theme-indigo">
+      <md-toolbar class="md-theme-red">
         <h1 class="md-toolbar-tools">Main Menu</h1>
       </md-toolbar>
       <md-content  layout-padding ng-controller="LeftCtrl">
@@ -21,9 +22,9 @@
         <md-list-item>
           <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised"flex>Delete / Update</md-button>
         </md-list-item>
-        <md-list-item>
+        <!--<md-list-item>
           <md-button ng-click="close()" href="#reports" class="md-primary md-raised" flex>Reports</md-button>
-        </md-list-item>
+        </md-list-item>-->
         <md-list-item>
           <md-button ng-click="close()" href="#wineDisplay" class="md-primary md-raised" flex>Wine Display</md-button>
         </md-list-item>
@@ -32,7 +33,6 @@
     <md-content flex layout-padding  class="transparent">
       <main ng-view>
       </main>
-    <div flex></div>
     </md-content>
   </section>
 </div>

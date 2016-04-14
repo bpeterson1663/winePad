@@ -1,0 +1,79 @@
+<div ng-cloak>
+  <md-toolbar>
+    <h1 class="md-toolbar-tools center-align">Add Wine</h1>
+  </md-toolbar>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Search Wine">
+      <md-content class="md-padding">
+        <form layout="column" class="add-wine-box md-whiteframe-z1">
+          <md-content class="md-padding">
+            <md-input-container>
+              <label for="wineryName">Lookup Winery: </label>
+              <input ng-model="wineObject.name" value="Search Wine" type="text" id="wineryName" required/>
+            </md-input-container>
+            <div layout="row" layout-align="top center">
+              <md-button type="submit" ng-click="search($event, wineObject)" class="md-primary md-raised" >SEARCH WINERY</md-button>
+            </div>
+          </md-content>
+        </form>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="Add Wine Manually">
+      <form layout="column" class="add-wine-box md-whiteframe-z1">
+        <md-content class="md-padding">
+        <md-input-container>
+          <label>Name: </label>
+          <input ng-model="wineObject.name" type="text" id="name"/>
+        </md-input-container><br/>
+        <md-input-container>
+          <label>Varietal: </label>
+          <input ng-model="wineObject.varietal" type="text" id="varietal"/>
+        </md-input-container>
+        <md-input-container>
+          <label>Vintage: </label>
+          <input ng-model="wineObject.vintage" type="text" id="vintage" />
+        </md-input-container>
+        <md-input-container>
+          <label>Appellation: </label>
+            <input ng-model="wineObject.appellation" type="text" id="appellation"/>
+        </md-input-container><br />
+        <md-input-container>
+          <label>Region: </label>
+          <input ng-model="wineObject.region" type="text" id="region" />
+        </md-input-container>
+        <md-input-container>
+          <label>Image URL: </label>
+          <input ng-model="wineObject.imgurl" type="text" id="imgurl" />
+        </md-input-container><br />
+        <md-input-container>
+          <label>Winery Info: </label>
+          <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo" />
+        </md-input-container>
+        <md-input-container>
+          <label>Tasting Notes: </label>
+          <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes" />
+        </md-input-container><br />
+        <md-input-container>
+          <label>Cost: $</label>
+          <input ng-model="wineObject.cost" type="text" id="cost" />
+        </md-input-container>
+        <md-input-container>
+          <label>Price: $</label>
+          <input ng-model="wineObject.price" type="text" id="price" />
+        </md-input-container>
+        <md-input-container>
+          <label>Inventory: </label>
+          <input ng-model="wineObject.inventory" type="text" id="inventory" />
+        </md-input-container>
+        <div layout="row" layout-align="top center">
+           <md-button type="submit" class="md-raised md-primary"  ng-click="showAddConfirmManual($event, wineObject)">ADD WINE</md-button>
+           <div flex="flex"></div>
+        </div>
+       </md-content>
+     </form>
+    </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

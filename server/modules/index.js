@@ -7,7 +7,6 @@ var User = require("../models/user");
 
 router.get("/getWineDatabase/:id", function(req, res){
     var id = req.user._id;
-    console.log("ID in the get route is: ", req.user._id);
 
     User.findById(id, function(err, data){
         if(err) {
@@ -18,7 +17,6 @@ router.get("/getWineDatabase/:id", function(req, res){
 });
 //Adding new wine to winelist array. Updated existing array with new information
 router.put("/addWineToCellar/:id", function(req, res){
-  console.log("Information being sent to the server is: ",req.body);
   var id = req.body.data._id;
   //console.log("User Id that will be update: ", id);
   if(!req.body) {
@@ -34,14 +32,12 @@ router.put("/addWineToCellar/:id", function(req, res){
       var update = {
           winelist: req.body.data.winelist
       };
-      console.log("information on variable update: ", update);
       User.findByIdAndUpdate(id, update, function(err){
           if(err) {
               return res.send(500, err);
           }
       });
   });
-  console.log("Made it to here");
 });
 
 //Delete Wine From Array route. Actually updating new array after spliced
@@ -68,7 +64,6 @@ router.put("/deleteWine/:id", function(req,res){
     });
 });
 router.put("/updateWine/:id", function(req, res) {
-  console.log("Start of Update Wine");
   var id = req.body.data._id;
   if(!req.body) {
       return res.send(400);
@@ -88,7 +83,6 @@ router.put("/updateWine/:id", function(req, res) {
               return res.send(500, err);
           }
       });
-      console.log("Made it to the end of the Update Route");
     });
 });
 

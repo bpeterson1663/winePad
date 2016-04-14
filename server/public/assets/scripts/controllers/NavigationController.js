@@ -1,6 +1,7 @@
 myApp.controller('NavigationController', function ($scope, $http, $timeout, $mdSidenav, $log, WineCellarService) {
     var wineCellar = WineCellarService;
     wineCellar.checkUserLoggedIn();
+    $scope.userInfo = wineCellar;
     //logOutUswer function not working
     $scope.logOutUser = function(){
         $http.get('/logout').then(function(response){

@@ -1,31 +1,54 @@
-
-<div flex-gt-sm="auto" flex>
-<md-list ng-controller="MoreInfoController" ng-cloak>
-  <md-content class="md-padding">
-    <md-toolbar layout="row" class="md-hue-3">
-        <div class="md-toolbar-tools">
-          <span>Wine List</span>
-          <label>Search</label>
-          <input ng-model="query" type="text" placeholder="Filter by" autofocus>
-        </div>
-      </md-toolbar>
-      <md-list-item class="md-4-line" ng-repeat="object in wineList.response.winelist | filter:query | orderBy: 'name' ">
-          <md-toolbar>
-            <h1 class="md-toolbar-tools center-align">{{object.name}}</h1>
-          </md-toolbar>
-            <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
-              <p>Varietal: {{ object.varietal }}</p>
-              <p>Vintage: {{ object.vintage }}</p>
-              <p>Cost: ${{ object.cost }}</p>
-              <p>Price: ${{ object.price }}</p>
-              <p>Inventory: {{ object.inventory }} bottle(s)</p>
-            <div layout="row" layout-align="top center">
-              <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >Delete Wine</md-button><md-button class="md-primary md-raised" ng-click="edit($event, object)" >Edit Wine</md-button>
-            </div>
-
-        </md-list-item>
+<div ng-cloak>
+  <md-toolbar>
+    <h1 class="md-toolbar-tools center-align">Edit Wine</h1>
+  </md-toolbar>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Edit Wine">
+      <md-content class="md-padding">
+        <form layout="column" class="add-wine-box md-whiteframe-z1">
+          <md-list ng-cloak flex>
+            <md-input-container>
+              <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
+            </md-input-container>
+              <md-list-item class="md-3-line"  ng-repeat="object in wineList.response.winelist | filter:query | orderBy: 'name' " ng-animate="'animate'" ng-click="showMore($event, object)">
+                <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
+                <div class="md-list-item-text" layout="column">
+                  <h3>{{ object.name}} {{ object.vintage }}</h3>
+                  <h4>{{ object.varietal }}</h4>
+                  <p>Price: ${{ object.price }}</p>
+                  <p>{{ object.inventory}} bottle(s)</p>
+                  <md-button class="md-primary md-raised" ng-click="edit($event, object)" >Edit Wine</md-button>
+                </div>
+              </md-list-item>
+              <md-divider ></md-divider>
+            </md-list>
+        </form>
       </md-content>
-        <md-divider ></md-divider>
-      </md-list>
-    </md-content>
+    </md-tab>
+
+    <md-tab label="Delete Wine">
+      <form layout="column" class="add-wine-box md-whiteframe-z1">
+        <md-content>
+        <md-list ng-cloak flex>
+          <md-input-container>
+            <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
+          </md-input-container>
+            <md-list-item class="md-3-line"  ng-repeat="object in wineList.response.winelist | filter:query | orderBy: 'name' " ng-animate="'animate'" ng-click="showMore($event, object)">
+              <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ object.name}} {{ object.vintage }}</h3>
+                <h4>{{ object.varietal }}</h4>
+                <p>Price: ${{ object.price }}</p>
+                <p>{{ object.inventory}} bottle(s)</p>
+                <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >Delete Wine</md-button>
+              </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+          </md-list>
+        </md-content>
+     </form>
+    </md-tab>
+    </md-tabs>
+  </md-content>
 </div>
