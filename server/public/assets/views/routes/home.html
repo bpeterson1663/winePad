@@ -1,16 +1,16 @@
 
-<div flex-gt-sm="50" flex>
+<div flex-gt-sm="50" flex class="wine-box">
   <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>Home</span>
       </div>
     </md-toolbar>
-    <md-content>
+    <md-content >
     <md-list ng-controller="MoreInfoController" ng-cloak flex>
+      <md-subheader>Current list in {{wineList.response.firstname}}'s cellar</md-subheader>
       <md-input-container>
         <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
       </md-input-container>
-      <md-subheader>Current list in {{wineList.response.firstname}}'s cellar</md-subheader>
         <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist  | filter:query | orderBy: 'name' " ng-animate="'animate'" ng-click="showMore($event, object)">
           <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
           <div class="md-list-item-text" layout="column">

@@ -1,34 +1,37 @@
-<md-dialog aria-label="{{wine.name}}">
+<md-dialog aria-label="{{wine.name}}" class="wine-box">
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <img ng-src="{{wine.imgurl}}" class="md-avatar" alt="{{wine.name}}" />
+
         <h2>{{wine.name}}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">X
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <md-dialog-content>
       <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Cellar Information">
+        <md-tab label="Wine Information">
           <md-content class="md-padding more-info-content">
-            <h1 class="md-display-2">Cellar Information</h1>
-            <p>Name: {{wine.name}}</p>
-            <p>Vareital: {{wine.varietal}}</p>
-            <p>Vintage: {{wine.vintage}}</p>
-            <p>Appelation: {{wine.appellation}}</p>
-            <p>Region: {{wine.region}}</p>
+            <h1 class="md-display-2">Winery Information</h1>
+            <img ng-src="{{wine.imgurl}}" class="md-avatar" alt="{{wine.name}}" />
+            <p><b>Name:</b> {{wine.name}} <b>Vareital:</b> {{wine.varietal}} <b>Vintage:</b> {{wine.vintage}}</p>
+            <p><b>Appelation:</b> {{wine.appellation}} <b>Region:</b> {{wine.region}}</p>
+            <p><b>Price:</b> ${{wine.price}}</p>
+            <p><b>Cost:</b> ${{wine.cost}}</p>
+            <p><b>Inventory:</b> {{wine.inventory}}</p>
           </md-content>
         </md-tab>
         <md-tab label="Winery Information">
           <md-content class="md-padding">
             <h1 class="md-display-2">Winery Information</h1>
+            <p>Winery Information: {{wine.wineryinfo}}</p>
           </md-content>
         </md-tab>
         <md-tab label="Tasting Notes">
           <md-content class="md-padding">
             <h1 class="md-display-2">Tasting Notes</h1>
+            <p>Tasting Notes: {{wine.tastingnotes}}</p>
           </md-content>
         </md-tab>
       </md-tabs>

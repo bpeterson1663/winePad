@@ -6,8 +6,8 @@
         <!--<md-button ng-click="logOutUser()" class="md-primary md-raised float-right" hide-gt-md>Log Out</md-button>-->
       </div>
     </md-toolbar>
-  <section class="md-theme-red" layout="row">
-    <md-button ng-click="toggleLeft()" class="md-primary md-raised" hide-gt-md>Main Menu</md-button>
+  <section class="md-theme-red" layout="vertical">
+    <md-button ng-click="toggleLeft()" class="md-primary md-raised nav-btn" hide-gt-md>Main Menu</md-button>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop md-whiteframe="4">
       <md-toolbar class="md-theme-red">
         <h1 class="md-toolbar-tools">Main Menu</h1>
@@ -20,7 +20,7 @@
           <md-button ng-click="close()" href="#add" class="md-primary md-raised" flex>Add</md-button>
         </md-list-item>
         <md-list-item>
-          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised"flex>Delete / Update</md-button>
+          <md-button ng-click="close()" href="#deleteUpdate" class="md-primary md-raised"flex>Update / Delete</md-button>
         </md-list-item>
         <!--<md-list-item>
           <md-button ng-click="close()" href="#reports" class="md-primary md-raised" flex>Reports</md-button>

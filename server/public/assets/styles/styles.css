@@ -7,13 +7,21 @@ body{
 main{
   margin: 0 auto;
 }
-.loginBox {
+.login-box {
   max-width:  90%;
-  width: 500px
+  width: 500px;
+  background-color:white;
+  opacity: .9;
 }
-.add-wine-box{
+
+
+.nav-btn{
+  height:75px;
+  width:150px;
+}
+.wine-box{
   max-width:  90%;
-  width: 700px;
+  width: 800px;
   background-color:white;
   opacity: .9;
 }
