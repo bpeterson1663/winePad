@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var MongoURI = "mongodb://<user>:<password>@candidate.40.mongolayer.com:11147,candidate.60.mongolayer.com:10885/app49546176";
+var MongoURI = "mongodb://localhost/winePad_collection";
 var MongoDB = mongoose.connect(MongoURI).connection;
 
 MongoDB.on("error", function(err){
