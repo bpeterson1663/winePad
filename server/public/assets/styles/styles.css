@@ -1,11 +1,35 @@
 body{
   margin-top: 0;
-  background: url('../images/background.jpg') no-repeat center center fixed;
+  min-height:100%;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
-  background-color: transparent;
+  background-attachment: fixed;
 }
+
+section{
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height:100%;
+  margin-bottom: 50px;
+}
+
 main{
   margin: 0 auto;
+  min-height: 100%;
+}
+footer{
+  font-size:10px;
+  text-align: center;
+  color: white;
+  height: 50px;
+  padding: 2px;
+  background-color:#b71c1c;
+  position: fixed;
+  bottom:0px;
+  min-width:100%
 }
 .login-box {
   max-width:  90%;
@@ -13,8 +37,10 @@ main{
   background-color:white;
   opacity: .9;
 }
+.main-content{
 
-
+  background-color:transparent;
+}
 .nav-btn{
   height:75px;
   width:150px;
@@ -24,6 +50,7 @@ main{
   width: 800px;
   background-color:white;
   opacity: .9;
+  margin:0 auto;
 }
 .float-right{
   float: right;

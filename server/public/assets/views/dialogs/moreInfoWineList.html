@@ -1,4 +1,4 @@
-<md-dialog aria-label="{{wine.name}}"  class="fullscreen-dialog">
+<md-dialog aria-label="{{wine.name}}"  class="fullscreen-dialog wine-box">
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -13,26 +13,26 @@
       <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="Cellar Information">
           <md-content class="md-padding more-info-content">
-            <h1 class="md-display-2">Cellar Information</h1>
+            <h1 class="md-display-2">Wine Information</h1>
             <img ng-src="{{wine.imgurl}}" class="md-avatar" alt="{{wine.name}}" />
-            <p>Name: {{wine.name}}</p>
-            <p>Vareital: {{wine.varietal}}</p>
-            <p>Vintage: {{wine.vintage}}</p>
-            <p>Appelation: {{wine.appellation}}</p>
-            <p>Region: {{wine.region}}</p>
-            <p>Price: ${{wine.price}}</p>
+            <p><b>Name:</b> {{wine.name}}</p>
+            <p><b>Vareital:</b> {{wine.varietal}}</p>
+            <p><b>Vintage:</b> {{wine.vintage}}</p>
+            <p><b>Appelation:</b> {{wine.appellation}}</p>
+            <p><b>Region:</b> {{wine.region}}</p>
+            <p><b>Price:</b> ${{wine.price}}</p>
           </md-content>
         </md-tab>
         <md-tab label="Winery Information">
           <md-content class="md-padding">
             <h1 class="md-display-2">Winery Information</h1>
-            <p>Winery Information: {{wine.wineryinfo}}</p>
+            <p>{{wine.wineryinfo}}</p>
           </md-content>
         </md-tab>
         <md-tab label="Tasting Notes">
           <md-content class="md-padding">
             <h1 class="md-display-2">Tasting Notes</h1>
-            <p>Tasting Notes: {{wine.tastingnotes}}</p>
+            <p> {{wine.tastingnotes}}</p>
           </md-content>
         </md-tab>
       </md-tabs>

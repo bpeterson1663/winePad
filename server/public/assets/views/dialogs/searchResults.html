@@ -4,43 +4,67 @@
       <div class="md-toolbar-tools">
         <h2>Search Results</h2>
         <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content>
+    <md-dialog-content class="md-padding">
       <div class="container">
         <h3>Search Results</h3>
-        <div ng-controller="ProgressWheel as vm" ng-cloak layout="row" layout-sm="column" layout-align="space-around">
-            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <div ng-controller="ProgressWheel as vm" md-mode="indeterminate" ng-show="isLoading" ng-cloak layout="row" layout-sm="column" layout-align="space-around">
+            <md-progress-circular></md-progress-circular>
         </div>
-        <div ng-repeat="object in wineSelection.wine.data.Products.List">
-          <form>
-            <h3>Name: {{ object.Name }}</h3>
-            <img ng-src="{{object.Labels[0].Url}}" alt="Wine Label" class="img"/>
-            <p>Varietal: {{ object.Varietal.Name }}</p>
-            <p>Vintage: {{ object.Vintage}}</p>
-            <p>Appellation: {{ object.Appellation.Name }}</p>
-            <p>Region: {{ object.Appellation.Region.Name }}</p>
-            <!--<p>Info: {{object.Vineyard.Url}}</p>
-            <p>Tasting Notes: {{object.Community.Url}}</p>-->
-            <label for="cost">Cost: $</label>
-            <input ng-model="object.cost" type="text" id="cost" />
-            <label for="price">Price: $</label>
-            <input ng-model="object.price" type="text" id="price" />
-            <label for="Inventory">Inventory: </label>
-            <input ng-model="object.inventory" type="text" id="inventory" />
-
-            <md-button class="md-primary md-raised" ng-click="showAddConfirm($event, object)" >
-             Add Wine
-           </md-button>
-          </form>
-        </div>
-      </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-      <span flex></span>
-      <md-button ng-click="answer('close')">
-       Close
-      </md-button>
-    </md-dialog-actions>
-  </form>
+        <div ng-repeat="wineObject in wineSelection.wine.data.Products.List">
+          <img ng-src="{{wineObject.Labels[0].Url}}" class="md-avatar" alt="{{wineObject.Name}}" />
+          <form layout="column" class="add-wine-box md-whiteframe-z1">
+            <md-content class="md-padding">
+            <md-input-container>
+              <label>Name: </label>
+              <input ng-model="wineObject.Name" type="text" id="name" size="90"/>
+            </md-input-container><br/>
+            <md-input-container>
+              <label>Varietal: </label>
+              <input ng-model="wineObject.Varietal.Name" type="text" id="varietal"/>
+            </md-input-container>
+            <md-input-container>
+              <label>Vintage: </label>
+              <input ng-model="wineObject.Vintage" type="text" id="vintage" />
+            </md-input-container>
+            <md-input-container>
+              <label>Appellation: </label>
+                <input ng-model="wineObject.Appellation.Name" type="text" id="appellation"/>
+            </md-input-container><br />
+            <md-input-container>
+              <label>Region: </label>
+              <input ng-model="wineObject.Appellation.Region.Name" type="text" id="region" />
+            </md-input-container>
+            <md-input-container>
+              <label>Winery Info: </label>
+              <input ng-model="wineObject.wineryinfo" type="text" id="wineryinfo" />
+              <a ng-href="{{wineObject.Vineyard.Url}}" target="_blank">More Info</a>
+            </md-input-container>
+            <md-input-container>
+              <label>Tasting Notes: </label>
+              <input ng-model="wineObject.tastingnotes" type="text" id="tastingnotes" />
+              <a ng-href="{{wineObject.Community.Url}}" target="_blank">More Info</a>
+            </md-input-container><br />
+            <md-input-container>
+              <label>Cost: $</label>
+              <input ng-model="wineObject.cost" type="text" id="cost" />
+            </md-input-container>
+            <md-input-container>
+              <label>Price: $</label>
+              <input ng-model="wineObject.price" type="text" id="price" />
+            </md-input-container>
+            <md-input-container>
+              <label>Inventory: </label>
+              <input ng-model="wineObject.inventory" type="text" id="inventory" />
+            </md-input-container>
+            <div layout="row" layout-align="top center">
+               <md-button class="md-primary md-raised" ng-click="showAddConfirm($event, wineObject)" >
+                  Add Wine
+               </md-button>
+               <div flex="flex"></div>
+            </div>
+           </md-content>
+         </form>
 </md-dialog>

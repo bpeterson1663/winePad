@@ -4,6 +4,8 @@ myApp.controller('WineDisplayController',["$scope","$window","$location","$mdDia
   wineCellar.getWineList();
   $scope.wineList = wineCellar.wineList;
 
+  console.log("Wine Display Contrller: ", $scope.wineList);
+
     $scope.isFullscreen = false;
     $scope.toggleFullScreen = function() {
         $scope.isFullscreen = !$scope.isFullscreen;
@@ -11,6 +13,7 @@ myApp.controller('WineDisplayController',["$scope","$window","$location","$mdDia
   //function that is called when the wine is clicked on the homepage
 
   $scope.showWineList = function(ev) {
+    wineCellar.getWineList();
    $mdDialog.show({
      controller: ShowWineListDialog,
      templateUrl: 'dialogs/wineList.html',//redirects to the wine list dialog fullscreen view

@@ -27,6 +27,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       var apiKey = "d92bbdc39ab169cf89da261bad304bed";
       $http.get('http://services.wine.com/api/beta2/service.svc/json/catalog?search='+wineSearch+'&size=10&apikey='+apiKey+'').then(function(response){
         //store the response from the api onto the data key of the wine object
+        console.log("Wine Coming Back from API: ",response.data);
         wine.data = response.data;
         //return wine object
         return wine.data;
@@ -88,6 +89,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
         manuallyAddWine : manuallyAddWine,
         deleteWine : deleteWine,
         checkUserLoggedIn: checkUserLoggedIn,
-        editWine: editWine
+        editWine: editWine,
+        userInfo: userInfo
     }
 }]);

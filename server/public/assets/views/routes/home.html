@@ -1,5 +1,5 @@
 
-<div flex-gt-sm="50" flex class="wine-box">
+<div id="home"flex-gt-sm="50" class="wine-box transparent">
   <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>Home</span>
@@ -9,7 +9,7 @@
     <md-list ng-controller="MoreInfoController">
           <md-subheader>Current list in {{wineList.response.firstname}}'s cellar</md-subheader>
           <md-input-container>
-            <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
+            <input ng-model="query" type="text" placeholder="Search Cellar" autofocus>
           </md-input-container>
           <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist  | filter:query | orderBy: 'name' "ng-click="showMore($event, object)">
             <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
