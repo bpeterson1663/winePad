@@ -4,6 +4,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
     var wineSearch = "Argyle";//keyword search in API
     var userInfo = {}; //userInfo that is collected when they log in
     var wineListLength;
+
     //function that will check to make sure user is logged in on each page
     var checkUserLoggedIn = function(){
       $http.get("/user").then(function(response){
@@ -18,7 +19,6 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
                 //wineListLength = userInfo.data.winelist.length;
                 getWineList();
               });
-
             }
         });
     };
@@ -57,7 +57,25 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       //gets wine list based on users specific Mongo ID
       $http.get("/getWineDatabase/"+userInfo.data._id).then(function(response){
           wineList.response = response.data;
+      }).then(function(){
+        var totalCost = 0;
+        for(var i = 0; i < wineList.response.winelist.length; i++){
+          if(wineList.response.winelist[i].cost != null && wineList.response.winelist[i].inventory != null){
+            totalCost += (wineList.response.winelist[i].cost * wineList.response.winelist[i].inventory);
+          }
+        }
+        wineList.response.totalCost = totalCost;
+
+        var totalBottles = 0;
+        for(var i = 0; i < wineList.response.winelist.length; i++){
+          if(wineList.response.winelist[i].inventory != null){
+            totalBottles += parseInt(wineList.response.winelist[i].inventory);
+          }
+        }
+        wineList.response.totalBottles = totalBottles;
+
       });
+
     };
     //delete wine function from array
     var deleteWine = function(wine){
@@ -78,7 +96,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       }
       $http.put("/updateWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
-
+    console.log("The wineList object in the factory: ", wineList);
     return {
         wine : wine,
         searchWine : searchWine,

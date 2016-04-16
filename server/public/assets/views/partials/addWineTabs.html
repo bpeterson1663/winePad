@@ -25,7 +25,7 @@
         <md-content class="md-padding">
         <md-input-container>
           <label>Name: </label>
-          <input ng-model="wineObject.name" type="text" id="name"/>
+          <input ng-model="wineObject.name" type="text" id="name" required/>
         </md-input-container><br/>
         <md-input-container>
           <label>Varietal: </label>
@@ -57,15 +57,15 @@
         </md-input-container><br />
         <md-input-container>
           <label>Cost: $</label>
-          <input ng-model="wineObject.cost" type="text" id="cost" />
+          <input ng-model="wineObject.cost" type="number" id="cost" required/>
         </md-input-container>
         <md-input-container>
           <label>Price: $</label>
-          <input ng-model="wineObject.price" type="text" id="price" />
+          <input ng-model="wineObject.price" type="number" id="price" />
         </md-input-container>
         <md-input-container>
           <label>Inventory: </label>
-          <input ng-model="wineObject.inventory" type="text" id="inventory" />
+          <input ng-model="wineObject.inventory" type="number" id="inventory" />
         </md-input-container>
         <div layout="row" layout-align="top center">
            <md-button type="submit" class="md-raised md-primary"  ng-click="showAddConfirmManual($event, wineObject)">ADD WINE</md-button>

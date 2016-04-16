@@ -7,7 +7,8 @@
     </md-toolbar>
     <md-content >
     <md-list ng-controller="MoreInfoController">
-          <md-subheader>Current list in {{wineList.response.firstname}}'s cellar</md-subheader>
+          <md-subheader>Current list in {{wineList.response.firstname}}'s cellar &nbsp;&nbsp;&nbsp;&nbsp; Total cost of inventory: {{wineList.response.totalCost | currency}} &nbsp;&nbsp;&nbsp;&nbsp;Total bottles in cellar: {{wineList.response.totalBottles}}</md-subheader>
+
           <md-input-container>
             <input ng-model="query" type="text" placeholder="Search Cellar" autofocus>
           </md-input-container>
@@ -16,7 +17,7 @@
             <div class="md-list-item-text" layout="column"  >
               <h3>{{ object.name}} {{ object.vintage }}</h3>
               <h4>{{ object.varietal }}</h4>
-              <p>Price: ${{ object.price }}</p>
+              <p>Price: {{ object.price | currency:"$":0 }}</p>
               <p>{{ object.inventory}} bottle(s)</p>
             </div>
           </md-list-item>

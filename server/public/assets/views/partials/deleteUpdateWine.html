@@ -16,7 +16,7 @@
                 <div class="md-list-item-text" layout="column">
                   <h3>{{ object.name}} {{ object.vintage }}</h3>
                   <h4>{{ object.varietal }}</h4>
-                  <p>Price: ${{ object.price }}</p>
+                  <p>Price: {{ object.price | currency:"$":0 }}</p>
                   <p>{{ object.inventory}} bottle(s)</p>
                   <md-button class="md-primary md-raised" ng-click="edit($event, object)" >Edit Wine</md-button>
                 </div>

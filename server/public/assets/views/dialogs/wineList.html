@@ -19,7 +19,7 @@
                 <div class="md-list-item-text" layout="column">
                   <h3>{{ wine.name }}</h3>
                   <h4>{{ wine.region }}</h4>
-                  <p>${{ wine.price }}</p>
+                  <p>{{ wine.price | currency:"$":0 }}</p>
                 </div>
                 <md-button ng-click="confirmSold($event, wine)" >&nbsp;&nbsp;&nbsp;</md-button>
               </md-list-item>

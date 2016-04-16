@@ -20,7 +20,7 @@
             <p><b>Vintage:</b> {{wine.vintage}}</p>
             <p><b>Appelation:</b> {{wine.appellation}}</p>
             <p><b>Region:</b> {{wine.region}}</p>
-            <p><b>Price:</b> ${{wine.price}}</p>
+            <p><b>Price:</b> {{wine.price | currency:"$":0}}</p>
           </md-content>
         </md-tab>
         <md-tab label="Winery Information">
