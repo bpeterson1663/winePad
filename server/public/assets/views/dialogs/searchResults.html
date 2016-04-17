@@ -15,11 +15,11 @@
         </div>
         <div ng-repeat="wineObject in wineSelection.wine.data.Products.List">
           <img ng-src="{{wineObject.Labels[0].Url}}" class="md-avatar" alt="{{wineObject.Name}}" />
-          <form layout="column" class="add-wine-box md-whiteframe-z1">
+          <form id="addSearch"layout="column" class="add-wine-box md-whiteframe-z1">
             <md-content class="md-padding">
             <md-input-container>
               <label>Name: </label>
-              <input ng-model="wineObject.Name" type="text" id="name" size="90" required/>
+              <input ng-model="wineObject.Name" type="text" id="name" size="90" />
             </md-input-container><br/>
             <md-input-container>
               <label>Varietal: </label>
@@ -49,18 +49,29 @@
             </md-input-container><br />
             <md-input-container>
               <label>Cost: $</label>
-              <input ng-model="wineObject.cost" type="number" id="cost" required/>
+              <input ng-model="wineObject.cost" type="number" id="cost" />
             </md-input-container>
             <md-input-container>
               <label>Price: $</label>
               <input ng-model="wineObject.price" type="number" id="price" />
             </md-input-container>
+
             <md-input-container>
               <label>Inventory: </label>
               <input ng-model="wineObject.inventory" type="number" id="inventory" />
+            </md-input-container><br />
+            <md-input-container>
+              <label>Size: </label>
+              <md-select ng-model="wineObject.size" placeholder="Select a Size" required>
+                <md-option value="187 mL">187 mL</md-option>
+                <md-option value="375 mL">375 mL</md-option>
+                <md-option value="750 mL">750 mL</md-option>
+                <md-option value="1.5 L">1.5 L</md-option>
+                <md-option value="3.0 L">3.0 L</md-option>
+              </md-select>
             </md-input-container>
             <div layout="row" layout-align="top center">
-               <md-button class="md-primary md-raised" ng-click="showAddConfirm($event, wineObject)" >
+               <md-button class="md-primary md-raised" ng-click="showAddConfirm(wineObject)" >
                   Add Wine
                </md-button>
                <div flex="flex"></div>

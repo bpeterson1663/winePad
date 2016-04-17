@@ -21,11 +21,11 @@
     </md-tab>
 
     <md-tab label="Add Wine Manually">
-      <form layout="column" class="add-wine-box md-whiteframe-z1">
+      <form id="addManually"layout="column" class="add-wine-box md-whiteframe-z1">
         <md-content class="md-padding">
         <md-input-container>
           <label>Name: </label>
-          <input ng-model="wineObject.name" type="text" id="name" required/>
+          <input ng-model="wineObject.name" type="text" id="name" />
         </md-input-container><br/>
         <md-input-container>
           <label>Varietal: </label>
@@ -57,19 +57,34 @@
         </md-input-container><br />
         <md-input-container>
           <label>Cost: $</label>
-          <input ng-model="wineObject.cost" type="number" id="cost" required/>
+          <input ng-model="wineObject.cost" type="number" id="cost" />
         </md-input-container>
         <md-input-container>
           <label>Price: $</label>
           <input ng-model="wineObject.price" type="number" id="price" />
         </md-input-container>
         <md-input-container>
+          <label>Size: </label>
+          <md-select ng-model="wineObject.size" placeholder="Select a Size">
+            <md-option value="187 mL">187 mL</md-option>
+            <md-option value="375 mL">375 mL</md-option>
+            <md-option value="750 mL">750 mL</md-option>
+            <md-option value="1.5 L">1.5 L</md-option>
+            <md-option value="3.0 L">3.0 L</md-option>
+          </md-select>
+          <div class="errors" ng-messages="addManually.wineObject.size.$error" ng-if="addManually.$dirty">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
           <label>Inventory: </label>
           <input ng-model="wineObject.inventory" type="number" id="inventory" />
         </md-input-container>
         <div layout="row" layout-align="top center">
-           <md-button type="submit" class="md-raised md-primary"  ng-click="showAddConfirmManual($event, wineObject)">ADD WINE</md-button>
+          <div id="toastContainer">
+           <md-button type="submit" class="md-raised md-primary"  ng-click="showAddConfirmManual(wineObject)">ADD WINE</md-button>
            <div flex="flex"></div>
+          </div>
         </div>
        </md-content>
      </form>

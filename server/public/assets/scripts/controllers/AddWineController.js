@@ -45,7 +45,8 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
          cost: addWine.cost,
          price: addWine.price,
          inventory: addWine.inventory,
-         tastingnotes: addWine.tastingnotes
+         tastingnotes: addWine.tastingnotes,
+         size: addWine.size
       };
 
       wineCellar.addWine(wine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object

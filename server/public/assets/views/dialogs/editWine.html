@@ -47,9 +47,20 @@
             <label>Price: </label>
             <input type="number" ng-model="wine.price" />
         </md-input-container>
+
         <md-input-container >
             <label>Inventory: </label>
             <input type="number" ng-model="wine.inventory" />
+        </md-input-container><br />
+        <md-input-container>
+          <label>Size: </label>
+          <md-select ng-model="wine.size" placeholder="Select a Size">
+            <md-option value="187 mL">187 mL</md-option>
+            <md-option value="375 mL">375 mL</md-option>
+            <md-option value="750 mL">750 mL</md-option>
+            <md-option value="1.5 L">1.5 L</md-option>
+            <md-option value="3.0 L">3.0 L</md-option>
+          </md-select>
         </md-input-container>
       </div>
     </md-dialog-content>

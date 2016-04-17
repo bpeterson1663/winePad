@@ -18,6 +18,7 @@
             <p><b>Name:</b> {{wine.name}}</p>
             <p><b>Vareital:</b> {{wine.varietal}}</p>
             <p><b>Vintage:</b> {{wine.vintage}}</p>
+            <p><b>Size:</b> {{wine.size}}</p>
             <p><b>Appelation:</b> {{wine.appellation}}</p>
             <p><b>Region:</b> {{wine.region}}</p>
             <p><b>Price:</b> {{wine.price | currency:"$":0}}</p>
@@ -38,6 +39,7 @@
       </md-tabs>
     </md-dialog-content>
     <md-dialog-actions layout="row">
+      <md-button ng-click="answer('close')" style="margin-right:20px;" >Close</md-button>
       <span flex></span>
     </md-dialog-actions>
   </form>
