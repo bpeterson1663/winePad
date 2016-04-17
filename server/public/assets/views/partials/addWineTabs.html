@@ -72,19 +72,14 @@
             <md-option value="1.5 L">1.5 L</md-option>
             <md-option value="3.0 L">3.0 L</md-option>
           </md-select>
-          <div class="errors" ng-messages="addManually.wineObject.size.$error" ng-if="addManually.$dirty">
-            <div ng-message="required">Required</div>
-          </div>
         </md-input-container>
         <md-input-container>
           <label>Inventory: </label>
           <input ng-model="wineObject.inventory" type="number" id="inventory" />
         </md-input-container>
         <div layout="row" layout-align="top center">
-          <div id="toastContainer">
-           <md-button type="submit" class="md-raised md-primary"  ng-click="showAddConfirmManual($event, wineObject)">ADD WINE</md-button>
+           <md-button type="submit" class="md-raised md-primary"  ng-click="addWineManually(wineObject)">ADD WINE</md-button>
            <div flex="flex"></div>
-          </div>
         </div>
        </md-content>
      </form>

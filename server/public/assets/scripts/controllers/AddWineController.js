@@ -1,4 +1,4 @@
-myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDialog","$http", "$mdMedia", "WineCellarService", function($scope, $window, $location, $mdDialog, $http, $mdMedia, WineCellarService){
+myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$location", "$mdDialog","$http", "$mdMedia", "WineCellarService", function($scope, $mdToast, $window, $location, $mdDialog, $http, $mdMedia, WineCellarService){
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
     //Check if user is logged in
@@ -30,9 +30,8 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
 
     };
     //show a confirmation that when the Add Wine Button is pressed a message pops up asking would you like to add another wine yes or no while adding the wine to the winelist array on the user object
-    $scope.status = '  ';
-    $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    $scope.showAddConfirm = function(ev, addWine) {
+
+    $scope.addWine = function(addWine) {
       //abstract wine information into a variable called wine
       var wine = {
          name: addWine.Name,
@@ -50,36 +49,22 @@ myApp.controller("AddWineController", ["$scope", "$window", "$location", "$mdDia
       };
 
       wineCellar.addWine(wine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object
-      //confirmation message
-      var confirm = $mdDialog.confirm()//
-            .title('Would you like to add another wine?')
-            .ariaLabel('Add Wine')
-            .targetEvent(ev)
-            .ok('Yes')
-            .cancel('No');
-      $mdDialog.show(confirm).then(function() {
-        $scope.status = 'Add Another Wine';
-      }, function() {
-        $scope.status = $location.url("home");//redirect if they press no
-      });
+      $mdToast.show(
+               $mdToast.simple()
+                  .textContent('Wine Successfully Added!')
+                  .hideDelay(3000).position('bottom left')
+          );
   };
   //manually entering wine
-  $scope.showAddConfirmManual = function(ev, addWine) {
+  $scope.addWineManually = function(addWine) {
     wineCellar.manuallyAddWine(addWine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object
-    //wineCellar.getWineList();
-    //confirmation message
-    var confirm = $mdDialog.confirm()//
-          .title('Would you like to add another wine?')
-          .ariaLabel('Add Wine')
-          .targetEvent(ev)
-          .ok('Yes')
-          .cancel('No');
-    $mdDialog.show(confirm).then(function() {
-      $scope.status = 'Add Another Wine';
-    }, function() {
-      $scope.status = $location.url("home");//redirect if they press no
-    });
-};
+    $mdToast.show(
+             $mdToast.simple()
+                .textContent('Wine Successfully Added!')
+                .hideDelay(3000).position('bottom left')
+        );
+  };
+
   function DialogControllerSearch($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();
