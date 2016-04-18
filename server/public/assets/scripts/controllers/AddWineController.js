@@ -29,8 +29,7 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
       $scope.wineSelection = wineCellar; //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom as the search result
 
     };
-    //show a confirmation that when the Add Wine Button is pressed a message pops up asking would you like to add another wine yes or no while adding the wine to the winelist array on the user object
-
+    //Addwine submit function from Search API Page
     $scope.addWine = function(addWine) {
       //abstract wine information into a variable called wine
       var wine = {
@@ -48,7 +47,8 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
          size: addWine.size
       };
 
-      wineCellar.addWine(wine);//when showAddConfirm is called in the searchResults partial it passes the wine information (wine) into the factory to update the winelist array on the user object
+      wineCellar.addWine(wine);//pass wine object into factory to be saved in database
+      //display a message stating successfully added wine
       $mdToast.show(
                $mdToast.simple()
                   .textContent('Wine Successfully Added!')
@@ -64,7 +64,7 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
                 .hideDelay(3000).position('bottom left')
         );
   };
-
+//Function for dialog search modal
   function DialogControllerSearch($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();

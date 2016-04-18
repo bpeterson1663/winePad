@@ -31,6 +31,9 @@ footer{
   bottom:0px;
   min-width:100%
 }
+.edit-delete-btn{
+  width:120px;
+}
 .login-box {
   max-width:  90%;
   width: 500px;
@@ -44,6 +47,10 @@ footer{
 .nav-btn{
   height:75px;
   width:150px;
+}
+
+.nav-menu{
+  height: 400px;
 }
 .wine-box{
   max-width:  90%;

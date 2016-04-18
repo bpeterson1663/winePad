@@ -2,9 +2,6 @@
   <md-toolbar>
     <h1 class="md-toolbar-tools center-align">Update / Delete Wine</h1>
   </md-toolbar>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Update Wine">
       <md-content class="md-padding">
         <form layout="column" class="wine-box md-whiteframe-z1">
           <md-list ng-cloak flex>
@@ -17,38 +14,13 @@
                   <h3>{{ object.name}} {{ object.vintage }}</h3>
                   <h4>{{ object.varietal }}</h4>
                   <p>Price: {{ object.price | currency:"$":0 }}</p>
-                  <p>{{ object.inventory}} bottle(s)</p>
-                  <md-button class="md-primary md-raised" ng-click="edit($event, object)" >Edit Wine</md-button>
+                  <p>{{ object.inventory}} bottle(s)</p><br/>
+                  <md-button class="md-primary md-raised edit-delete-btn" ng-click="edit($event, object)" >Update Wine</md-button>
+                  <md-button class="md-primary md-raised edit-delete-btn" ng-click="showConfirm($event, object)" >Delete Wine</md-button>
                 </div>
               </md-list-item>
               <md-divider ></md-divider>
             </md-list>
         </form>
-      </md-content>
-    </md-tab>
-
-    <md-tab label="Delete Wine">
-      <form layout="column" class="add-wine-box md-whiteframe-z1">
-        <md-content>
-        <md-list ng-cloak flex>
-          <md-input-container>
-            <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
-          </md-input-container>
-            <md-list-item class="md-3-line" ng-repeat="object in wineList.response.winelist | filter:query | orderBy: 'name'" ng-click="showMore($event, object)">
-              <img ng-src="{{object.imgurl}}?{{$index}}" class="md-avatar" alt="{{object.name}}" />
-              <div class="md-list-item-text" layout="column">
-                <h3>{{ object.name}} {{ object.vintage }}</h3>
-                <h4>{{ object.varietal }}</h4>
-                <p>Price: ${{ object.price }}</p>
-                <p>{{ object.inventory}} bottle(s)</p>
-                <md-button class="md-primary md-raised" ng-click="showConfirm($event, object)" >Delete Wine</md-button>
-              </div>
-            </md-list-item>
-            <md-divider ></md-divider>
-          </md-list>
-        </md-content>
-     </form>
-    </md-tab>
-    </md-tabs>
   </md-content>
 </div>

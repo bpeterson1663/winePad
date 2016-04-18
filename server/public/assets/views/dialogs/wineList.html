@@ -18,6 +18,7 @@
             <md-input-container>
               <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
             </md-input-container>
+            <!--Using ng-if to checik size, price and inventory. If size is not equal to 187 ml then display because its not by the glass.  If price does not exist and inventory is zero do not display.-->
             <md-list-item ng-click="showMore($event,wine)" class="md-3-line animate-repeat" ng-repeat="wine in wineList.response.winelist | filter:query | orderBy: 'name' " ng-if="wine.inventory > 0 && wine.price > 0 && wine.size !== '187 mL'" >
               <img ng-src="{{wine.imgurl}}?{{$index}}" class="md-avatar" alt="{{wine.name}}" />
               <div class="md-list-item-text" layout="column">
@@ -40,6 +41,7 @@
           <md-input-container>
             <input ng-model="query" type="text" placeholder="Search Wine" autofocus>
           </md-input-container>
+          <!--Using ng-if to checik size. If size is equal to 187 ml then display.  Were not concerned about inventory or price since by the glass inventory is to hard to keep track of. For display purposes and functionality, its best that the user leaves inventory and cost at 0 to exclude from calculations-->
           <md-list-item ng-click="showMore($event,wine)" class="md-3-line animate-repeat" ng-repeat="wine in wineList.response.winelist | filter:query | orderBy: 'name' " ng-if="wine.size == '187 mL' " >
             <img ng-src="{{wine.imgurl}}?{{$index}}" class="md-avatar" alt="{{wine.name}}" />
             <div class="md-list-item-text" layout="column">

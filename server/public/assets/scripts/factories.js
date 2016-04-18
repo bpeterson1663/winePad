@@ -27,13 +27,12 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       var apiKey = "d92bbdc39ab169cf89da261bad304bed";
       $http.get('http://services.wine.com/api/beta2/service.svc/json/catalog?search='+wineSearch+'&size=10&apikey='+apiKey+'').then(function(response){
         //store the response from the api onto the data key of the wine object
-        console.log("Wine Coming Back from API: ",response.data);
         wine.data = response.data;
         //return wine object
         return wine.data;
       });
     };
-
+    //Search API function
     var searchWine = function(data){
       wineSearch = data.name;
       getWine();
@@ -59,13 +58,16 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
           wineList.response = response.data;
       }).then(function(){
         var totalCost = 0;
+        //Go through the wine list array to calculate totalCost of inventory
+        //Check if cost is null and inventory is null
         for(var i = 0; i < wineList.response.winelist.length; i++){
           if(wineList.response.winelist[i].cost != null && wineList.response.winelist[i].inventory != null){
             totalCost += (wineList.response.winelist[i].cost * wineList.response.winelist[i].inventory);
           }
         }
         wineList.response.totalCost = totalCost;
-
+        //Go through the wine list array to calculate total bottles in inventory
+        //Check if inventory is null
         var totalBottles = 0;
         for(var i = 0; i < wineList.response.winelist.length; i++){
           if(wineList.response.winelist[i].inventory != null){
@@ -96,7 +98,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       }
       $http.put("/updateWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
-    console.log("The wineList object in the factory: ", wineList);
+
     return {
         wine : wine,
         searchWine : searchWine,

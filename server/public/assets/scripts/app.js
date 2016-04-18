@@ -29,14 +29,12 @@ myApp.config(["$routeProvider", function($routeProvider){
 myApp.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('red', {
-      'default': '800', // by default use shade 400 from the pink palette for primary intentions
-      'hue-1': '500', // use shade 100 for the <code>md-hue-1</code> class
-      'hue-2': '700', // use shade 600 for the <code>md-hue-2</code> class
-      'hue-3': '900' // use shade A100 for the <code>md-hue-3</code> class
+      'default': '800',
+      'hue-1': '500',
+      'hue-2': '700',
+      'hue-3': '900'
     })
-    // If you specify less than all of the keys, it will inherit from the
-    // default shades
     .accentPalette('grey', {
-      'default': '900' // use shade 200 for default, and keep all other shades the same
+      'default': '900' 
     });
 });

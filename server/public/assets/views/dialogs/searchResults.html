@@ -10,9 +10,6 @@
     <md-dialog-content class="md-padding">
       <div class="container">
         <h3>Search Results</h3>
-        <div ng-controller="ProgressWheel as vm" md-mode="indeterminate" ng-show="isLoading" ng-cloak layout="row" layout-sm="column" layout-align="space-around">
-            <md-progress-circular></md-progress-circular>
-        </div>
         <div ng-repeat="wineObject in wineSelection.wine.data.Products.List">
           <img ng-src="{{wineObject.Labels[0].Url}}" class="md-avatar" alt="{{wineObject.Name}}" />
           <form id="addSearch"layout="column" class="add-wine-box md-whiteframe-z1">
@@ -62,7 +59,7 @@
             </md-input-container><br />
             <md-input-container>
               <label>Size: </label>
-              <md-select ng-model="wineObject.size" placeholder="Select a Size" required>
+              <md-select ng-model="wineObject.size" placeholder="Select a Size" >
                 <md-option value="187 mL">187 mL</md-option>
                 <md-option value="375 mL">375 mL</md-option>
                 <md-option value="750 mL">750 mL</md-option>

@@ -13,7 +13,7 @@
       <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="Cellar Information">
           <md-content class="md-padding more-info-content">
-            <h1 class="md-display-2">Wine Information</h1>
+            <h1 class="md-display-2">Cellar Information</h1>
             <img ng-src="{{wine.imgurl}}" class="md-avatar" alt="{{wine.name}}" />
             <p><b>Name:</b> {{wine.name}}</p>
             <p><b>Vareital:</b> {{wine.varietal}}</p>
@@ -39,7 +39,6 @@
       </md-tabs>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="answer('close')" style="margin-right:20px;" >Close</md-button>
       <span flex></span>
     </md-dialog-actions>
   </form>
