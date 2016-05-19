@@ -14,9 +14,6 @@ myApp.config(["$routeProvider", function($routeProvider){
       templateUrl: "/assets/views/routes/deleteUpdate.html",
       controller: "DeleteUpdateController"
     }).
-    when('/reports', {
-      templateUrl: "/assets/views/routes/reports.html"
-    }).
     when('/wineDisplay', {
       templateUrl: "/assets/views/routes/wineDisplay.html",
       controller: "WineDisplayController"
@@ -35,6 +32,6 @@ myApp.config(function($mdThemingProvider) {
       'hue-3': '900'
     })
     .accentPalette('grey', {
-      'default': '900' 
+      'default': '900'
     });
 });
