@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var MongoURI =   process.env.MONGOLAB_URI || process.env.MONGOHQ_URL  || 'mongodb://localhost/winePad_collection' || 'mongodb://admin:winepad@ds011311.mlab.com:11311/heroku_d7cmdhsv';
+var MongoURI =  'mongodb://heroku_d7cmdhsv:bsjdqkvm75potj28f372j9pgpo@ds011311.mlab.com:11311/heroku_d7cmdhsv' || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL  || 'mongodb://localhost/winePad_collection';
 
 
 var MongoDB = mongoose.connect(MongoURI).connection;
