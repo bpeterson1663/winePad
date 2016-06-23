@@ -48,12 +48,7 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
       };
 
       wineCellar.addWine(wine);//pass wine object into factory to be saved in database
-      //display a message stating successfully added wine
-      $mdToast.show(
-               $mdToast.simple()
-                  .textContent('Wine Successfully Added!')
-                  .hideDelay(3000).position('bottom left')
-          );
+      
   };
   //manually entering wine
   $scope.addWineManually = function(addWine) {

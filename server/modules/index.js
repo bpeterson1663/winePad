@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var passport = require('passport');
-// var Wine = require('../models/newWine.js');
 var User = require("../models/user");
 
 router.get("/getWineDatabase/:id", function(req, res){
@@ -88,7 +87,7 @@ router.put("/updateWine/:id", function(req, res) {
 
 router.post("/", passport.authenticate("local", {
     successRedirect: "/assets/views/index.html#/home",
-    failureRedirect: "/",
+    failureRedirect: "/assets/views/incorrect.html",
     failureFlash: true
 }));
 router.get("/users", function(req,res,next){

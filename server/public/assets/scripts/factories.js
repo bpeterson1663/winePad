@@ -8,6 +8,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
     //function that will check to make sure user is logged in on each page
     var checkUserLoggedIn = function(){
       $http.get("/user").then(function(response){
+          console.log("Response is ", response);
             if(response.data !== true){
               console.log("NOT LOGGED IN!");
             $window.location.href = '/assets/views/login.html';//redirect if not logged in
@@ -42,7 +43,16 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
       wineListLength = userInfo.data.winelist.length;//sets the length of the array
       wine.id = wineListLength + 1;//create a specific id for each wine
       userInfo.data.winelist.push(wine);//push new wine to the array
-      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(getWineList());
+      $http.put("/addWineToCellar/"+ userInfo.data._id, userInfo).then(function(response){
+        console.log("response is ", response);
+        //display a message stating successfully added wine
+        $mdToast.show(
+                 $mdToast.simple()
+                    .textContent('Wine Successfully Added!')
+                    .hideDelay(3000).position('bottom left')
+            );
+        getWineList()
+      });
     };
     //same setup as above function
     var manuallyAddWine = function(wine){

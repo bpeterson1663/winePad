@@ -6,6 +6,10 @@ body{
   background-size: cover;
   background-attachment: fixed;
 }
+h1, h2{
+  color: white;
+  text-align: center;
+}
 section{
   background-image: url('../images/background.jpg');
   background-repeat: no-repeat;
