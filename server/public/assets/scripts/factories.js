@@ -1,4 +1,4 @@
-myApp.factory("WineCellarService", ["$http", "$window", function($http, $window){
+myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($http, $window, $mdToast){
     var wine = {};//wine object returned from API
     var wineList = {}; //wineList object returned from the database/cellar
     var wineSearch = "Argyle";//keyword search in API
@@ -24,19 +24,28 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
         });
     };
 
-    var getWine = function(){
+    var getWine = function(data){
+      wineSearch = data.name;
       var apiKey = "d92bbdc39ab169cf89da261bad304bed";
       $http.get('https://services.wine.com/api/beta2/service.svc/json/catalog?search='+wineSearch+'&size=10&apikey='+apiKey+'').then(function(response){
         //store the response from the api onto the data key of the wine object
-        wine.data = response.data;
-        //return wine object
-        return wine.data;
+        console.log("response is ", response);
+        if(response.status == 200){
+          wine.data = response.data;
+          wine.data.loading = false;
+          wine.status = response.status;
+          //return wine object
+
+        }
+        return wine;
       });
     };
-    //Search API function
-    var searchWine = function(data){
-      wineSearch = data.name;
-      getWine();
+
+    var getLiquor = function(){
+      $http.get('http://www.barnivore.com/liquor.json').then(function(response){
+        console.log("Response from Barnivore", response);
+      });
+
     };
     //Function to add wine to the winelist array on the user object
     var addWine = function(wine){
@@ -111,7 +120,6 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
 
     return {
         wine : wine,
-        searchWine : searchWine,
         getWine : getWine,
         getWineList : getWineList,
         wineList : wineList,
@@ -120,6 +128,7 @@ myApp.factory("WineCellarService", ["$http", "$window", function($http, $window)
         deleteWine : deleteWine,
         checkUserLoggedIn: checkUserLoggedIn,
         editWine: editWine,
-        userInfo: userInfo
+        userInfo: userInfo,
+        getLiquor: getLiquor
     }
 }]);

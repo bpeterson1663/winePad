@@ -1,14 +1,28 @@
-myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$location", "$mdDialog","$http", "$mdMedia", "WineCellarService", function($scope, $mdToast, $window, $location, $mdDialog, $http, $mdMedia, WineCellarService){
+myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$location", "$mdDialog","$http", "$mdMedia","$interval", "WineCellarService", function($scope, $mdToast, $window, $location, $mdDialog, $http, $mdMedia, $interval, WineCellarService){
   //store the factory object in wineCellar
     var wineCellar = WineCellarService;
     //Check if user is logged in
     wineCellar.checkUserLoggedIn();
     //get and display current winelist on users object
     wineCellar.getWineList();
-
+    wineCellar.getLiquor();
     //search function being called on the searchApi partial
     $scope.search = function(ev, winery){
-        wineCellar.searchWine(winery);//passes the name of winery into the searchWine funciton on the factory which goes out to the API
+      var responseAPI = {};
+      responseAPI.data = wineCellar.getWine(winery);//passes the name of winery into the searchWine funciton on the factory which goes out to the API
+      console.log("response from api ", responseAPI);
+       var self = this;
+       $scope.isLoading = true;
+       self.activated = true;
+       self.determinateValue = 30;
+       // Iterate every 100ms, non-stop and increment
+       // the Determinate loader.
+       $interval(function() {
+         self.determinateValue += 1;
+         if (self.determinateValue > 100) {
+           self.determinateValue = 30;
+         }
+       }, 100);
         //opens up a dialog box displaying the search results
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
         $mdDialog.show({
@@ -26,7 +40,8 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
-      $scope.wineSelection = wineCellar; //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom as the search result
+      //set a variable on the scope that is equal to the wineCellar object to be displayed on the dom as the search result
+        $scope.wineSelection = wineCellar;
 
     };
     //Addwine submit function from Search API Page
@@ -48,7 +63,7 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
       };
 
       wineCellar.addWine(wine);//pass wine object into factory to be saved in database
-      
+
   };
   //manually entering wine
   $scope.addWineManually = function(addWine) {
