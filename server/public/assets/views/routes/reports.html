@@ -3,3 +3,22 @@
       <span>Reports</span>
     </div>
   </md-toolbar>
+  <table st-table="wineCollection" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Wine</th>
+		<th>last name</th>
+		<th>birth date</th>
+		<th>balance</th>
+		<th>email</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="object in wineList.response.winelist">
+    <td>{{ object.name}} {{ object.vintage }}</td>
+    <td> {{object.varietal }}</td>
+    <td>Price: {{ object.price | currency:"$":0 }}</td>
+    <td>{{ object.inventory}} bottle(s)</td>
+	</tr>
+	</tbody>
+</table>

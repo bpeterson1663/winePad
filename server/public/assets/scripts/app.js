@@ -15,7 +15,8 @@ myApp.config(["$routeProvider", function($routeProvider){
       controller: "DeleteUpdateController"
     }).
     when('/reports', {
-      templateUrl: "/assets/views/routes/reports.html"
+      templateUrl: "/assets/views/routes/reports.html",
+      controller: "ReportsController"
     }).
     otherwise({
       redirect:'/home'

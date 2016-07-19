@@ -6,6 +6,9 @@ body{
   background-size: cover;
   background-attachment: fixed;
 }
+table{
+  background-color: white;
+}
 h1, h2{
   color: white;
   text-align: center;
