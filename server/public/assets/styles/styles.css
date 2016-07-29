@@ -43,6 +43,17 @@ md-content{
 md-dialog-content{
   opacity: .9;
 }
+md-dialog.fullscreen-dialog {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 .edit-delete-btn{
   width:120px;
 }
@@ -150,16 +161,4 @@ md-dialog-content{
    must be set to 0 to avoid an accidental CSS inheritance */
   -webkit-transition-duration: 0s;
   transition-duration: 0s;
-}
-
-md-dialog.fullscreen-dialog {
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    background-image: url('../images/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
