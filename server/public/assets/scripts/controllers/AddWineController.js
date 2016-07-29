@@ -11,18 +11,7 @@ myApp.controller("AddWineController", ["$scope", "$mdToast","$window", "$locatio
       var responseAPI = {};
       responseAPI.data = wineCellar.getWine(winery);//passes the name of winery into the searchWine funciton on the factory which goes out to the API
       console.log("response from api ", responseAPI);
-       var self = this;
-       $scope.isLoading = true;
-       self.activated = true;
-       self.determinateValue = 30;
-       // Iterate every 100ms, non-stop and increment
-       // the Determinate loader.
-       $interval(function() {
-         self.determinateValue += 1;
-         if (self.determinateValue > 100) {
-           self.determinateValue = 30;
-         }
-       }, 100);
+       
         //opens up a dialog box displaying the search results
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
         $mdDialog.show({
