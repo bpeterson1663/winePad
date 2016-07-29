@@ -4,10 +4,10 @@ myApp.controller('WineDisplayController',["$scope","$window","$location","$mdDia
   wineCellar.getWineList();
   $scope.wineList = wineCellar.wineList;
 
-    $scope.isFullscreen = false;
-    $scope.toggleFullScreen = function() {
-        $scope.isFullscreen = !$scope.isFullscreen;
-    }
+  $scope.isFullscreen = false;
+  $scope.toggleFullScreen = function() {
+      $scope.isFullscreen = !$scope.isFullscreen;
+  }
   //function that is called when the wine is clicked on the homepage
 
   $scope.showWineList = function(ev) {
