@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var passport = require("passport");
 var session = require("express-session");
 var localStrategy = require("passport-local");
-var flash = require('connect-flash');
 //MODELS
 var User = require("./models/user.js");
 
@@ -32,8 +31,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(flash());
 
 //PASSPORT SESSION
 passport.serializeUser(function(user, done){
