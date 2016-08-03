@@ -11,7 +11,7 @@ module.exports = function(grunt) {
               'client/scripts/controllers/*.js',
               'client/scripts/factories.js'
             ],
-            dest: 'server/public/assets/scripts/app.min.js'
+            dest: 'server/client/assets/scripts/app.min.js'
          }
        },
        copy: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
          },
          html : {
            expand: true,
-           cwd: 'client/views/',
+           cwd: 'server/client/views/',
            src: [
               "index.html",
               "registraion.html",
