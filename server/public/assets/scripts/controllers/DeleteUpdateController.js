@@ -45,6 +45,7 @@ myApp.controller("DeleteUpdateController", ["$scope", "$http", "$window", "$mdDi
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
+
   function DialogController($scope, $mdDialog, WineCellarService) {
     $scope.hide = function() {
       $mdDialog.hide();

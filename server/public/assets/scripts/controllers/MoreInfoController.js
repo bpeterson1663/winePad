@@ -1,7 +1,5 @@
 myApp.controller('MoreInfoController', function($scope,$animate, $mdDialog, WineCellarService) {
-  var wineCellar = WineCellarService;
-  //wineCellar.checkUserLoggedIn();
-  //function that is called when the wine is clicked on the homepage
+  var wineCellar = WineCellarService;  //function that is called when the wine is clicked on the homepage
   $scope.showMore = function(ev, wine) {
 
    $scope.wine = wine;

@@ -15,9 +15,7 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
             } else {
               console.log("LOGGED IN! ", response.data);
               $http.get("/user/name").then(function(response){//go and grab user data if succesfully logged in
-                // console.log("Response From Logged In:",response);
                 userInfo = response; //store information into userInfo
-                //wineListLength = userInfo.data.winelist.length;
                 getWineList();
               });
             }
