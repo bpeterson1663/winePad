@@ -6,19 +6,24 @@
   <table st-table="wineCollection" class="table table-striped">
 	<thead>
 	<tr>
-		<th>Wine</th>
-		<th>last name</th>
-		<th>birth date</th>
-		<th>balance</th>
-		<th>email</th>
+		<th>Name</th>
+		<th>Vintage</th>
+		<th>Varietal</th>
+		<th>Price</th>
+		<th>Cost Per Bottle</th>
+		<th>Inventory on Hand</th>
+		<th>Cost of Inventory</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr ng-repeat="object in wineList.response.winelist">
-    <td>{{ object.name}} {{ object.vintage }}</td>
-    <td> {{object.varietal }}</td>
-    <td>Price: {{ object.price | currency:"$":0 }}</td>
-    <td>{{ object.inventory}} bottle(s)</td>
+    <td>{{ object.name}} </td>
+		<td>{{ object.vintage }}</td>
+		<td>{{ object.varietal }}</td>
+		<td>{{ object.price | currency:"$":0 }}</td>
+		<td>{{ object.cost | currency:"$":0 }}</td>
+    <td>{{ object.inventory }}</td>
+		<td>{{ (object.inventory * object.cost) | currency:"$":0 }}</td>
 	</tr>
 	</tbody>
 </table>
