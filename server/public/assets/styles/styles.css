@@ -9,6 +9,15 @@ body{
 table{
   background-color: white;
 }
+td{
+  padding: 4px;
+}
+tr:nth-child(even){
+  background-color: #d3d3d3;
+}
+th{
+  border-bottom: 3px solid black;
+}
 h1, h2{
   color: white;
   text-align: center;
