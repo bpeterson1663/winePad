@@ -20,10 +20,10 @@
     <td>{{ object.name}} </td>
 		<td>{{ object.vintage }}</td>
 		<td>{{ object.varietal }}</td>
-		<td>{{ object.price | currency:"$":0 }}</td>
-		<td>{{ object.cost | currency:"$":0 }}</td>
+		<td>{{ object.price | currency:"$": .00 }}</td>
+		<td>{{ object.cost | currency:"$":0.00 }}</td>
     <td>{{ object.inventory }}</td>
-		<td>{{ (object.inventory * object.cost) | currency:"$":0 }}</td>
+		<td>{{ (object.inventory * object.cost) | currency:"$":0.00 }}</td>
 	</tr>
 	</tbody>
 </table>
