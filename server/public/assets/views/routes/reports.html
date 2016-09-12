@@ -26,4 +26,15 @@
 		<td>{{ (object.inventory * object.cost) | currency:"$":0.00 }}</td>
 	</tr>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td colspan="2">Total Bottles {{wineList.response.totalBottles}} bottle(s)</td>
+			
+			<td colspan="2">Total Cost of Inventory {{wineList.response.totalCost | currency}}</td>
+			
+		</tr>
+	</tfoot>
 </table>
