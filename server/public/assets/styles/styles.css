@@ -103,6 +103,9 @@ md-dialog.fullscreen-dialog {
 .fixed{
   position: fixed;
 }
+.filter-option{
+  margin: 0 auto;
+}
 .add-wine-container{
   margin: 0 auto;
   text-align: center;

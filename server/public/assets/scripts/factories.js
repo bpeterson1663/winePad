@@ -109,8 +109,8 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
       $http.put("/updateWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
 
-    var createReport = function(params){
-        console.log("Made it inside into the Factory");
+    var createReport = function(filterOne, filterTwo, filterThree){
+        console.log("Working In The Report Factory " + filterOne + filterTwo + filterThree);
     }
 
     return {

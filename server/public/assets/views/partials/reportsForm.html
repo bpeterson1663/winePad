@@ -1,11 +1,61 @@
 <md-content>
 <md-tabs> <!--REMOVE IF NO OTHER TABS-->
  <md-tab label="Currenty Inventory Report">
-      <form id="addManually"layout="column" class="add-wine-box md-whiteframe-z1">
+      <form id="addManually" layout="column" class="add-wine-box md-whiteframe-z1">
         <md-content class="md-padding">
-        <md-input-container>
-          <md-checkbox ng-model="wineObject.name" type="text" id="name" > Name: </md-checkbox>
-        </md-input-container><br/>
+
+            <md-card>
+                <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Filter Report For Current Inventory</span>
+                </md-card-title-text>
+                </md-card-title>
+                 <md-card-content>
+                    <div layout="row" layout-align="space-between center">
+                        <span>First Filter: <b>{{filterOne}}</b></span>
+                        <md-select ng-model="filterOne" placeholder="-" class="md-no-underline filter-option">
+                            <md-option value="Winery">Winery</md-option>
+                            <md-option value="Varietal">Varietal</md-option>
+                            <md-option value="Vintage">Vintage</md-option>
+                            <md-option value="Appellation">Appellation</md-option>
+                            <md-option value="Region">Region</md-option>
+                            <md-option value="Cost">Cost</md-option>
+                            <md-option value="Price">Price</md-option>
+                            <md-option value="Inventory">Inventory</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Second Filter: <b>{{filterTwo}}</b></span>
+                        <md-select ng-model="filterTwo" placeholder="-" class="md-no-underline filter-option">
+                            <md-option value="Winery">Winery</md-option>
+                            <md-option value="Varietal">Varietal</md-option>
+                            <md-option value="Vintage">Vintage</md-option>
+                            <md-option value="Appellation">Appellation</md-option>
+                            <md-option value="Region">Region</md-option>
+                            <md-option value="Cost">Cost</md-option>
+                            <md-option value="Price">Price</md-option>
+                            <md-option value="Inventory">Inventory</md-option>
+                        </md-select>
+                    </div>
+                    <div layout="row" layout-align="space-between center">
+                        <span>Third Filter: <b>{{filterThree}}</b></span>
+                        <md-select ng-model="filterThree" placeholder="-" class="md-no-underline filter-option">
+                            <md-option value="Winery">Winery</md-option>
+                            <md-option value="Varietal">Varietal</md-option>
+                            <md-option value="Vintage">Vintage</md-option>
+                            <md-option value="Appellation">Appellation</md-option>
+                            <md-option value="Region">Region</md-option>
+                            <md-option value="Cost">Cost</md-option>
+                            <md-option value="Price">Price</md-option>
+                            <md-option value="Inventory">Inventory</md-option>
+                        </md-select>
+                    </div>
+                  </md-card-content>  
+            </md-card>    
+        <!--<md-radio-group>
+          <md-radio-button value="wineObject.name" type="text" id="name" > Name: </md-radio-button>
+          <md-radio-button> 
+        </md-radio-group><br/>
         <md-input-container>
           <label>Varietal: </label>
           <input ng-model="wineObject.varietal" type="text" id="varietal"/>
@@ -55,9 +105,9 @@
         <md-input-container>
           <label>Inventory: </label>
           <input ng-model="wineObject.inventory" type="number" id="inventory" />
-        </md-input-container>
+        </md-input-container>-->
         <div layout="row" layout-align="top center">
-           <md-button type="submit" class="md-raised md-primary"  ng-click="generateReport(filters)">Generate Report</md-button>
+           <md-button type="submit" class="md-raised md-primary"  ng-click="generateReport(filterOne, filterTwo, filterThree)">Generate Report</md-button>
            <div flex="flex"></div>
         </div>
        </md-content>
