@@ -109,6 +109,10 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
       $http.put("/updateWine/"+ userInfo.data._id, userInfo).then(getWineList());
     };
 
+    var createReport = function(params){
+        console.log("Made it inside into the Factory");
+    }
+
     return {
         wine : wine,
         getWine : getWine,
@@ -120,6 +124,7 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
         checkUserLoggedIn: checkUserLoggedIn,
         editWine: editWine,
         userInfo: userInfo,
-        getLiquor: getLiquor
+        getLiquor: getLiquor,
+        createReport: createReport
     }
 }]);

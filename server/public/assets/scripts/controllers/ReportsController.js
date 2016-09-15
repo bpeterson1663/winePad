@@ -4,7 +4,8 @@ myApp.controller('ReportsController', ['$scope', 'WineCellarService', function (
     $scope.wineList = wineCellar.wineList;//displays users wine list
     console.log("Wine Data", wineCellar.wineList);
 
-    $scope.generateReport = function(){
+    $scope.generateReport = function(params){
         console.log("Working In The Report Controller");
+        wineCellar.createReport(params)
     };
 }]);
