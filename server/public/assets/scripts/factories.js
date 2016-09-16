@@ -110,7 +110,15 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
     };
 
     var createReport = function(filterOne, filterTwo, filterThree){
+      var filterOne = filterOne;
+      var filterTwo = filterTwo;
+      var filterThre = filterThree;
         console.log("Working In The Report Factory " + filterOne + filterTwo + filterThree);
+        console.log("WIne data is in Filter",wineList.response.winelist);
+        var wineList = wineList.response.winelist;
+        for(var i = 0; i < wineList.length; i++){
+        
+        }
     }
 
     return {
