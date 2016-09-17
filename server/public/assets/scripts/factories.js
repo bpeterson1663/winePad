@@ -117,7 +117,7 @@ myApp.factory("WineCellarService", ["$http", "$window","$mdToast", function($htt
         console.log("WIne data is in Filter",wineList.response.winelist);
         var wineList = wineList.response.winelist;
         for(var i = 0; i < wineList.length; i++){
-        
+          
         }
     }
 
